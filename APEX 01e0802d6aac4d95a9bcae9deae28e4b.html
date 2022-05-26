@@ -1,0 +1,1192 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>APEX</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="01e0802d-6aac-4d95-a9bc-ae9deae28e4b" class="page sans"><header><h1 class="page-title">APEX</h1></header><div class="page-body"><h2 id="a5231267-d6ec-4658-9f85-620e4e00aaf4" class=""><details open=""><summary>Apex Basics</summary></details></h2><div class="indented"><p id="aa08b8bf-add5-4ea0-aa88-08731e845ec6" class="">
+</p><figure id="3ea77f8f-9d96-4adb-bee6-d859c0256575" class="image"><a href="Untitled%208.png"><img style="width:600px" src="Untitled%208.png"/></a></figure><h3 id="617ca972-11c1-4d1f-afdf-3389c4afc7da" class=""><details open=""><summary>First Codes</summary></details></h3><div class="indented"><pre id="01886afa-a28e-4743-9f41-f4e3164577cf" class="code"><code>System.debug(&#x27;Hello Clarusway Super Cohort&#x27;);
+
+System.debug(&#x27;This is our first Apex Code&#x27;);
+
+System.debug(&#x27;I am here to be the best salesforce Developer&#x27;);
+
+</code></pre><figure id="2db6e355-2a04-4f75-ad72-974dcbb862cc" class="link-to-page"><a href="Peardeck%20Code%20Questions%202db6e3552a044f75ad72974dcbb862cc.html">Peardeck Code Questions</a></figure></div><h3 id="b69b24ea-d243-4153-928b-dd3533601e6c" class=""><details open=""><summary>Comments</summary></details></h3><div class="indented"><pre id="ae17d84d-36ea-4fbb-b7ff-f8546d62938b" class="code"><code>// You can comment any where like that.</code></pre></div><h3 id="94a90f16-273d-46da-b89e-980b2cb0aa94" class=""><details open=""><summary>Variables and Heap</summary></details></h3><div class="indented"><pre id="12ee0f6c-5c29-4840-94e6-6eaa2a044e8a" class="code"><code>// assign a variable 
+String welcomeMessage=&#x27;Welcome to the clarusway Apex Lesson&#x27;;
+String msg=&#x27;I am here to be the best salesforce developer&#x27;;
+
+// String is data type
+// welcomeMessage is variable
+// &#x27;Welcome to the clarusway Apex Lesson&#x27; is data stored into the variable. 
+// = assignment operator
+// ; end of the line. it is not optional. you have to use it at the end of the line.
+
+// use this variable
+System.debug(welcomeMessage);</code></pre></div><h3 id="f9557596-0e43-4390-933b-1b8abb573e60" class=""><details open=""><summary>Data Types</summary></details></h3><div class="indented"><p id="19991206-c1de-4c19-ad02-c1c3d92f01a3" class="">Variables are what we use to store and manipulate data.</p><p id="8e659020-5356-43a6-8085-4c581d822154" class="">Data types determine what type of data we can store and manipulate.</p><figure id="528006c9-a5a9-4476-9e8c-db5f5e45afb4"><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_data_types.htm" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Salesforce Developers</div><div class="bookmark-description">Salesforce Developer Website</div></div><div class="bookmark-href"><img src="https://developer.salesforce.com/1/unknown/immutable/s/fdb507e/app/theme/dist/assets/images/favicon.ico" class="icon bookmark-icon"/>https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_data_types.htm</div></div></a></figure><p id="8d546a46-1d63-4d8c-97ac-4d2551ba46fa" class="">Primitive Data Types (Integer, Double, Long, Date, Datetime, String, ID, or Boolean)</p><p id="1a001fcc-7cbf-4328-a4c4-dae222e4f072" class="">sObject</p><p id="3c5243fe-ccf0-4f84-b3bf-c2cf221a8a30" class="">Collections (Lists, Sets and Maps)</p><p id="2660b3e1-7c2d-41e4-afd6-fb80fcd625e3" class="">Enums</p><p id="6c518633-c5ba-45d9-aa4f-2419a1c81051" class="">Variables</p><p id="afb25d4e-9873-4dfd-bbc4-f43e184ff7a6" class="">Constants</p></div><h3 id="58e508d0-029e-4a05-8d36-c9c3cfed10c6" class=""><details open=""><summary>Primitive Data Types</summary></details></h3><div class="indented"><table id="2cd9e3f2-1840-4ae5-841d-e69af589ab35" class="simple-table"><tbody><tr id="0280c3b8-b154-4118-bde6-c1fde84213f6"><td id="W`q~" class=""><strong>Data Type</strong></td><td id="_rHS" class="" style="width:439px"><strong>Description</strong></td></tr><tr id="1c47cb3b-b9dc-4314-8fdc-7fd31d4d56a7"><td id="W`q~" class="">Blob</td><td id="_rHS" class="" style="width:439px">A collection of binary data stored as a single object.</td></tr><tr id="fb34285b-3752-4479-b7b2-23120cccb84d"><td id="W`q~" class="">Boolean</td><td id="_rHS" class="" style="width:439px">A value that can only be assigned <strong>true</strong>, <strong>false</strong>, or <strong>null</strong>.</td></tr><tr id="bface0f6-00b7-4851-92ea-bcc3bf41eaad"><td id="W`q~" class="">Date</td><td id="_rHS" class="" style="width:439px">A value that indicates a particular day. Unlike Datetime values, Date values contain no information about time. Always create date values with a system static method.</td></tr><tr id="5b6d0138-a437-4814-a9b0-b9a1a86c5e9c"><td id="W`q~" class="">Datetime</td><td id="_rHS" class="" style="width:439px">A value that indicates a particular day and time, such as a timestamp. Always create datetime values with a system static method.</td></tr><tr id="4977de4c-8080-424a-b2f5-1bed52a4b87c"><td id="W`q~" class="">Decimal</td><td id="_rHS" class="" style="width:439px">A number that includes a decimal point.</td></tr><tr id="582707be-c633-420e-bc6d-fc15e862873a"><td id="W`q~" class="">Double</td><td id="_rHS" class="" style="width:439px">A 64-bit number that includes a decimal point. Doubles have a minimum value of -2xx63 and a maximum value of 2xx63 - 1.</td></tr><tr id="24569e9b-adf6-4138-91ac-89fc770f942c"><td id="W`q~" class="">ID</td><td id="_rHS" class="" style="width:439px">Any valid 18-character Lightning Platform record identifier.</td></tr><tr id="7922802c-fcf5-4675-b9cb-55c81359ed3c"><td id="W`q~" class="">Integer</td><td id="_rHS" class="" style="width:439px">A 32-bit number that does not include a decimal point. Integers have a minimum value of  -2,147,483,648 and a maximum value of 
+2,147,483,647.</td></tr><tr id="c2b19a36-0aae-41e2-a8aa-4eb8de9b0b14"><td id="W`q~" class="">Long</td><td id="_rHS" class="" style="width:439px">A 64-bit number that does not include a decimal point. Longs have a minimum value of -2xx<style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>63</mn></mrow><annotation encoding="application/x-tex">63</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">63</span></span></span></span></span><span>﻿</span></span>  and a maximum value of 2xx<style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.2/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>63</mn></mrow><annotation encoding="application/x-tex">63</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">63</span></span></span></span></span><span>﻿</span></span> -1. Use this data type when you need a range of values wider than the range provided by Integer.</td></tr><tr id="6a58915a-6b1d-49df-9c32-25a882c2a5f5"><td id="W`q~" class="">Object</td><td id="_rHS" class="" style="width:439px">Any data type that is supported in Apex. Apex supports primitive data types (such as Integer), user-defined custom classes, the sObject generic type, or an sObject specific type (such as Account). All Apex data types inherit from Object.</td></tr><tr id="28868ac0-6b1f-400a-99a3-de4cc75766ea"><td id="W`q~" class="">String</td><td id="_rHS" class="" style="width:439px">Any set of characters surrounded by single quotes.</td></tr><tr id="dda1b903-c111-4af1-be1c-b9348dadf514"><td id="W`q~" class="">Time</td><td id="_rHS" class="" style="width:439px">A value that indicates a particular time. Always create time values with a system static method.</td></tr></tbody></table></div><h3 id="777bb6e7-612a-45da-a6a7-00a73623ddb9" class=""><details open=""><summary>Escape Character</summary></details></h3><div class="indented"><pre id="f4ce3edd-52ba-472e-b66b-5aad2462add2" class="code"><code>// if you hear that statement 40 times it will be in the future.
+String msg=&#x27;I&#x27;m here to be the best salesforce developer&#x27;;
+
+System.debug(&#x27;Message : &#x27;+msg);
+
+// check this code and see the result. What is the problem.
+
+// \ is escape character
+// \b one backspace character
+// \n new line
+// \r carriage return
+// \t tab
+// \\ one backslash character
+// \o one ASCII null character
+
+// String msg=&#x27;I\&#x27;m here to be the best salesforce developer. \n Clarusway is the best bootcamp program.&#x27;;</code></pre></div><h3 id="768e0b2e-7259-4659-9f31-71a88fe67482" class=""><details open=""><summary>String Class Methods</summary></details></h3><div class="indented"><figure id="7b8c2d12-914c-4881-a8be-e0e752416e7f"><a href="https://developer.salesforce.com/docs/atlas.en-us.234.0.apexref.meta/apexref/apex_methods_system_string.htm" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">String Class</div><div class="bookmark-description">Contains methods for the String primitive data type.</div></div><div class="bookmark-href"><img src="https://developer.salesforce.com/1/unknown/immutable/s/fdb507e/app/theme/dist/assets/images/favicon.ico" class="icon bookmark-icon"/>https://developer.salesforce.com/docs/atlas.en-us.234.0.apexref.meta/apexref/apex_methods_system_string.htm</div></div></a></figure><pre id="c1753b6c-4736-4f12-a267-12086c668679" class="code"><code>String msg=&#x27;i am here to be the best salesforce developer&#x27;;
+System.debug(&#x27;My Message : &#x27;+msg);
+
+// capitalize message (Variable String)
+// only first letter will be capitalized
+System.debug(&#x27;My Message : &#x27;+msg.capitalize());
+
+// uppercase message (Variable String)
+// all letter will be capitalized
+System.debug(&#x27;My Message : &#x27;+msg.toUpperCase());
+
+// lowercase message (Variable String)
+// all letter will be lowered
+System.debug(&#x27;My Message : &#x27;+msg.toLowerCase());
+
+
+String msg=&#x27;Clarusway&#x27;;
+// equals
+System.debug(&#x27;Is equal to Clarusway?: &#x27;+msg.toUpperCase().equals(&#x27;clarusway&#x27;.toUpperCase()));
+
+// replace
+
+System.debug(&#x27;replace : &#x27;+msg.replace(&#x27;here&#x27;,&#x27;on clarusway&#x27;));
+
+// split
+System.debug(&#x27;split: &#x27;+msg.split(&#x27; &#x27;));
+System.debug(&#x27;split: &#x27;+msg.split(&#x27; &#x27;)[0]);
+
+</code></pre></div><h3 id="43ccddd9-6a29-4184-a611-6244d33a134a" class=""><details open=""><summary>Collections</summary></details></h3><div class="indented"><figure id="ef57386a-355f-44c6-8c8e-8f8e2644b07b" class="link-to-page"><a href="Lesson%20Codes%20for%20Collection%20ef57386a355f44c68c8e8f8e2644b07b.html"><span class="icon">🛬</span>Lesson Codes for Collection</a></figure><h3 id="b189bff5-b244-4935-897c-8abd6ec398e1" class=""><details open=""><summary>List Datatype</summary></details></h3><div class="indented"><p id="22691dba-de31-4a34-b2a2-4063ff6f3ec8" class="">An Apex list is an ordered group of items of the same type, like a shopping list. Each item in the shopping list is a string, and each item has a position within the list. To declare a list you need a few things. You will use the list reserved word, the data type (all items must be the same data type) within the &lt;&gt; characters, and the reserved word new. At the end of this statement there are required parentheses.</p><pre id="700c4bc8-34aa-44bf-b978-23d93a220f5f" class="code"><code>// Sets empty list integer decleration and add item later
+List&lt;Integer&gt; studentNumbers = new List&lt;Integer&gt;();
+
+studentNumbers.add(111);
+studentNumbers.add(222);
+studentNumbers.add(333);
+studentNumbers.add(444);
+studentNumbers.add(555);
+
+// shift the list and add element in this index
+studentNumbers.add(1, 666);
+
+
+System.debug(&#x27;Numbers : &#x27;+ studentNumbers);
+
+// empty 4 index null string list
+String[] groceries = new String[4];
+
+
+// Sets the first item when decleration
+List&lt;String&gt; wouldyoulike = new List&lt;String&gt;{&#x27;Coffee&#x27;};
+
+// Sets empty list string decleration and add item later
+List&lt;String&gt; wouldyoulike = new List&lt;String&gt;;
+wouldyoulike.add(&#x27;Coffee&#x27;);
+
+System.debug(&#x27;wouldyoulike Tea or Coffee : &#x27;+ wouldyoulike );
+
+System.debug(&#x27;wouldyoulike Tea or Coffee : &#x27;+ wouldyoulike.get(0) );
+
+
+
+wouldyoulike.remove(0);
+
+wouldyoulike.clear();
+
+
+System.debug(&#x27;wouldyoulike Tea or Coffee : &#x27;+ wouldyoulike.size() );
+
+
+
+wouldyoulike.set(1,&#x27;expresso&#x27;);
+
+
+ </code></pre></div><h3 id="f32105c0-d862-4f2f-85c5-e00af3b745dd" class=""><details open=""><summary>Set Datatype</summary></details></h3><div class="indented"><p id="fcde4028-1f2b-4469-ab01-b7763b11155c" class="">Until now, you’ve created one type of collection, a list. A set is an <strong>unordered set </strong>of unique items of the same type. Similar to a list, a set is a group of items, called elements, and all elements have the same data type, such as string, integer, or even Account. Unlike a list, a set maintains no particular order for its elements. Because the elements are unordered, a set can&#x27;t have any duplicates. If you try to add an element that’s already in the set, you don’t get an error, but the new value is not added to the set. Remember that when you loop through a list, you always access its items in the order that the items were added to the list. When you loop through a set, because the elements are unordered, you may access elements in a random order.</p><p id="fc800b27-eaab-4689-a2b5-ebd0ec2c1e10" class="">Declaring a set is like declaring a list, but you substitute the keyword <code>Set</code> for <code>List</code>. Let’s create a set of strings.</p><pre id="b5327995-0af1-4b89-a983-14701e25b1ed" class="code"><code>public class Tea{
+    public static void orderTea(){
+
+// List &gt; Set this line is one of the difference between list and set
+        Set&lt;String&gt; teaTypes = new Set &lt;String&gt;();
+// List &gt; Set this line is one of the difference between list and set
+
+        teaTypes.add(&#x27;Black&#x27;);
+        teaTypes.add(&#x27;White&#x27;);
+        teaTypes.add(&#x27;Herbal&#x27;);
+        system.debug(teaTypes);
+
+				system.debug(teaTypes.contains(&#x27;Black&#x27;));
+
+				teaTypes.remove(&#x27;Herbal&#x27;);
+
+				system.debug(teaTypes.size());
+
+				system.debug(teaTypes.isEmpty());
+
+				teaTypes.remove();
+
+
+    }
+}
+
+// try to duplicate values and check the results
+
+// run on Open Execute Anonymous Window
+Tea.orderTea();</code></pre></div><h3 id="d6157223-844b-4ba6-89f7-643e0ded44c0" class=""><details open=""><summary>Map Datatype</summary></details></h3><div class="indented"><p id="cfadb521-072e-4665-9386-a4eb8ae7c9c0" class="">A map is a more complex collection than either a list or a set. Each item in a map has two parts: a key and a value, known as a key-value pair. Keys and values can be any data type. Although each key is unique, values can be repeated within a map. Imagine a map of telephone country codes. The country code is the key and the name of the country is the value. Each country code is unique, but the countries can be duplicated (because a country may have more than one country code).</p><pre id="924547fb-f973-4253-aac9-79584559b3f0" class="code"><code>
+public class Tea{
+    public static void orderTea(){
+// map is different than the others. Furthermore it has 2 sections. Key + Value
+        Map &lt;String, String&gt; teaTypes = new Map &lt;String, String&gt;();
+// map is different than the others. Furthermore it has 2 sections. Key + Value
+
+// Also the adding items is different than the others
+        teaTypes.put(&#x27;Black&#x27;, &#x27;Earthy&#x27;);
+        teaTypes.put(&#x27;White&#x27;, &#x27;Sweet&#x27;);
+        teaTypes.put(&#x27;Herbal&#x27;, &#x27;Sweet&#x27;);
+// Also the adding items is different than the others
+
+//getting data
+		String flavorProfile = teaTypes.get(&#x27;Herbal&#x27;);
+    System.debug(&#x27;The flavorProfile of Herbal is: &#x27; + flavorProfile);
+//getting data
+
+
+        system.debug(teaTypes);
+    }
+}
+
+// run on Open Execute Anonymous Window
+
+Tea.orderTea();</code></pre></div><h3 id="fae815eb-4a0b-4b12-8a1c-d22af5d39a1e" class=""><details open=""><summary>Choosing the right Collection for me</summary></details></h3><div class="indented"><ul id="1ccb708c-c17e-4d9a-bef4-2f7748372037" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Do I want to allow duplicates ?</span></li></ul><ul id="7aec425a-abe7-4733-a331-ba27286a6eed" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Is the order of items important for me?</span></li></ul><ul id="c32204c8-bcee-4a6a-8a64-2a0ca652d6ec" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Do I need Key - Value Pair</span></li></ul></div><p id="5d30a42b-ab4b-406f-9fb2-8cc2adfdfce7" class="">
+</p></div><h3 id="c4ef4784-9eb5-44ad-8633-b7a75afa9cbd" class=""><details open=""><summary>Constants in Apex</summary></details></h3><div class="indented"><pre id="36bd56ed-e0e6-4c72-889b-3cb9257919c5" class="code"><code>// final makes variable constant. so variable will not change.
+final Decimal pi=3.14159;
+System.debug(pi);
+</code></pre></div><h3 id="66cf1170-fb32-46ad-ac8d-112c71797b9b" class=""><details open=""><summary>Expressions and Operators</summary></details></h3><div class="indented"><pre id="fc81f5ab-4d8b-406a-a3fb-85ad59900c2e" class="code"><code>x=y
+// y is an expression
+
+// = is an assignment operator
+</code></pre></div><h3 id="462165b9-5a5a-4c6e-84fb-78661ee7b49a" class=""><details open=""><summary>Operators</summary></details></h3><div class="indented"><p id="2c79ac64-0823-4f8a-865f-6ec2030a7710" class=""><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_expressions_operators_understanding.htm">https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_expressions_operators_understanding.htm</a></p><pre id="67fc77da-9b6f-4b5f-8957-29776f43bd21" class="code"><code>
+x++;
+x--;
+
+x=x+5;
+x+=5;
+x-=5;
+x*=5;
+x/=5;
+
+Boolean x=true;
+Boolean y=false; 
+Boolean z;
+
+z=x &amp;&amp; y;
+
+System.debug(z);
+
+r=x;
+System.debug(x);
+
+x= a&amp;&amp;b;
+
+x=a||b;
+
+
+// equality 
+x= a==b;
+x= a&lt;b;
+x=a&gt;b;
+
+//invert
+x=!x;
+
+// Some examples and apex special
+
+Integer numberOfTeaCups = 2;
+Boolean result = numberOfTeaCups &gt; 3; // 2 &gt; 3 = false
+numberOfTeaCups++;
+
+System.debug(numberOfTeaCups);
+
+numberOfTeaCups--;
+
+System.debug(numberOfTeaCups);
+
+numberOfTeaCups+=5; // numberOfTeaCups=numberOfTeaCups+5
+
+System.debug(numberOfTeaCups);
+
+numberOfTeaCups-=5; // numberOfTeaCups=numberOfTeaCups-5
+
+System.debug(numberOfTeaCups);
+
+
+numberOfTeaCups*=5; // numberOfTeaCups=numberOfTeaCups*5
+
+System.debug(numberOfTeaCups);
+
+numberOfTeaCups/=5; // numberOfTeaCups=numberOfTeaCups/5
+
+System.debug(numberOfTeaCups);
+
+</code></pre></div><figure id="265b79e1-a872-41d8-bcb5-7c76576c124f" class="link-to-page"><a href="In%20Class%20Notes%20Constants%20and%20Operators%20265b79e1a87241d8bcb57c76576c124f.html">In Class Notes Constants and Operators</a></figure><h3 id="68dd0243-f148-4d5c-80bc-d705dac8abb6" class=""><details open=""><summary>Datatype Conversion</summary></details></h3><div class="indented"><pre id="9cf17a1d-5412-42cb-8fd3-5976ddc7fc80" class="code"><code>Integer x=Integer.valueOf(&#x27;22&#x27;);
+
+System.Debug(x);
+
+</code></pre></div><h3 id="b8da9987-49c8-486d-a066-c6870fecf130" class=""><details open=""><summary>If-Else Statement</summary></details></h3><div class="indented"><pre id="61cbba45-4fe0-4148-9af2-93484cc3aedf" class="code"><code>Integer numberOfTeaCups = 2;
+numberOfTeaCups == 3;  //false
+numberOfTeaCups == 2; //true
+
+if (numberOfTeaCups == 3) {
+
+// some code
+}
+
+
+if (numberOfTeaCups == 2) {
+// some code
+}
+
+
+
+
+if(condition1 is true) {
+    //do this
+} else if (condition2 is true){
+    //do this
+} else if (condition3 is true) {
+    //do this
+} else {
+    //do this for other conditions
+}
+
+
+
+
+
+
+
+</code></pre><p id="a4cf5196-a88c-4df9-9ba5-13bae78172ec" class="">
+</p><figure id="5022ffce-4f91-4726-95f0-0edc9530b719" class="link-to-page"><a href="In-Class%20If%20Else%20ve%20switch%20statements%20Notes%205022ffce4f91472695f00edc9530b719.html">In-Class If Else  ve switch statements Notes</a></figure><figure id="82431686-381a-4d47-aa19-43501101a1b4" class="link-to-page"><a href="Loops%20Notion%2082431686381a4d47aa1943501101a1b4.html">Loops Notion</a></figure></div><h3 id="f8f8b985-7387-43b5-9915-e72325dd721a" class=""><details open=""><summary>Switch-When Statement</summary></details></h3><div class="indented"><pre id="6c0e4a3c-cdfd-4687-a620-870125664a30" class="code"><code>switch on expression {
+    when value1 {
+        //code block 1
+    }
+    when value2 {
+        //code block 2
+    }
+    when else { //if none of the previous values apply
+        //code block 3
+    }
+}
+
+
+switch on expression {
+    when value1 { //single value
+        //code block 1
+    }
+    when value2, value3 { //multiple values
+        //code block 2
+    }
+}</code></pre></div><h3 id="d6cc7a73-891d-4d4e-ba11-00f191cef907" class=""><details open=""><summary>Loops</summary></details></h3><div class="indented"><p id="fb0d9bc8-2026-48d1-b437-1f619e03de5c" class="">These types of procedural loops are supported:</p><ul id="99dc13d5-1462-4738-a741-5d3bcfdc4784" class="bulleted-list"><li style="list-style-type:disc"><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_do_while.htm">do {</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_do_while.htm">statement</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_do_while.htm">} while (</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_do_while.htm">Boolean_condition</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_do_while.htm">);</a></li></ul><ul id="f18ce550-96b0-4404-bd38-d6c461009bc8" class="bulleted-list"><li style="list-style-type:disc"><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_while.htm">while (</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_while.htm">Boolean_condition</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_while.htm">) </a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_while.htm">statement</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_while.htm">;</a></li></ul><ul id="aafd6e9c-38f3-4a19-a724-416b35e318e8" class="bulleted-list"><li style="list-style-type:disc"><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for.htm">for (</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for.htm">initialization</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for.htm">; </a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for.htm">Boolean_exit_condition</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for.htm">; </a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for.htm">increment</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for.htm">) </a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for.htm">statement</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for.htm">;</a></li></ul><ul id="04508994-1ab0-4b3d-b8a6-3ef1e56d7519" class="bulleted-list"><li style="list-style-type:disc"><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for_lists.htm">for (</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for_lists.htm">variable</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for_lists.htm"> : </a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for_lists.htm">array_or_set</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for_lists.htm">) </a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for_lists.htm">statement</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for_lists.htm">;</a></li></ul><ul id="e06b55e1-af99-488d-9f45-b7ff308a43c4" class="bulleted-list"><li style="list-style-type:disc"><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for_SOQL.htm">for (</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for_SOQL.htm">variable</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for_SOQL.htm"> : [</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for_SOQL.htm">inline_soql_query</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for_SOQL.htm">]) </a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for_SOQL.htm">statement</a><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_loops_for_SOQL.htm">;</a></li></ul><h3 id="e3c97127-acfb-4938-82ba-6d6569d8a579" class=""><details open=""><summary>While Loops</summary></details></h3><div class="indented"><pre id="603ef3be-7160-4f9b-9324-6861f054981a" class="code"><code>
+While(condition) {
+    //run this block of code if condition is true
+}
+
+
+
+Do {
+    //run this block of code if condition is true
+} while(condition);</code></pre></div><h3 id="dc76ee7e-48b8-4d28-be7b-9bc80fae8438" class=""><details open=""><summary>For Loop</summary></details></h3><div class="indented"><pre id="8b586b58-7732-4686-b5b2-b4557af8d0f1" class="code"><code>for(Integer i = 0; i &lt; 5; i++){
+    System.debug(&#x27;The number is &#x27; + i );
+}</code></pre><p id="99fd6b2c-a288-49a0-88bb-9d5cb20231d4" class="">
+</p></div><h3 id="a7bf83ae-c545-4b9b-b957-32cb78580743" class=""><details open=""><summary>List Iterations for Loops</summary></details></h3><div class="indented"><pre id="52ac7414-5035-4271-afb8-8677fc3cac11" class="code"><code>for (data_type variable_name : list_name or set_name){
+    // Loop body
+}
+
+
+List &lt;String&gt; tea = new List&lt;String&gt;{&#x27;Black Tea&#x27;, &#x27;Green Tea&#x27;, &#x27;Chai Tea&#x27;};
+for(String t : tea){
+    System.debug(&#x27;We have &#x27; + t);
+}</code></pre></div><h3 id="91d9fdd3-ba92-4860-b1d1-e86181e94cca" class=""><details open=""><summary>Break - Continue Statement</summary></details></h3><div class="indented"><pre id="80dd87d8-ea1c-42b1-b65f-71386d8d13e3" class="code"><code>All loops allow for loop control structures:
+break; exits the entire loop
+continue; skips to the next iteration of the loop
+
+</code></pre></div><p id="975c6a41-0102-4828-958f-0a41d4aa8e13" class="">
+</p></div><h3 id="07d7edcf-a110-402f-99fc-ead6a16fc1bc" class=""><details open=""><summary>Object Oriented Programming</summary></details></h3><div class="indented"><h2 id="c742d062-7175-4a39-89ce-d277cb622167" class=""><details open=""><summary>Pillars</summary></details></h2><div class="indented"><p id="00053c83-810f-4608-afb1-dd714b40bae6" class="">
+</p><figure id="c4047cba-38e2-45ba-9e93-9f7107bb151c" class="image"><a href="Untitled%209.png"><img style="width:802px" src="Untitled%209.png"/></a></figure><p id="a531631b-c9a6-4380-81ed-a02d918508cd" class="">
+</p><figure id="68c9bebc-598a-4421-b016-0c64f899091e" class="image"><a href="Untitled%2010.png"><img style="width:624px" src="Untitled%2010.png"/></a></figure><h3 id="7630928c-857b-4015-8260-2b717159efe9" class=""><details open=""><summary>Encapsulation</summary></details></h3><div class="indented"><p id="7c4e0d2f-429c-4022-8181-8099fdc6e5ee" class="">Wrapping Up or bundling your code.</p><pre id="886b9832-9b59-4023-991b-e52813c073f5" class="code"><code>
+// No Encapsulation 
+// There is no any other properties or behaviour of the stutends
+
+List&lt;Integer&gt; stdNo=new List&lt;Integer&gt;{11,22,33,44,55,66};
+
+
+
+// Encapsulated
+Class Student {
+String name;
+Integer stdNo;
+String courseName;
+Integer trailheadPoint;
+
+				void isTeamLead(){
+						System.debug(&#x27;I am Team Lead Today&#x27;);
+				
+				
+				}
+
+				void getCertified(){
+						System.debug(&#x27;I have Salesforce Administrator Certificate&#x27;);
+				
+				
+				}
+
+
+
+}
+</code></pre></div><h3 id="4a2979e6-2189-4852-bc41-cfa5571adaff" class=""><details open=""><summary>Abstraction</summary></details></h3><div class="indented"><p id="0570b179-10f6-44c8-a6d1-2efe5b63ff33" class="">Hiding your code</p><pre id="fa0fbcc3-0efb-4e2b-8d6a-1c8d98b9bf35" class="code"><code>// Encapsulated and Abstracted
+
+// access modifiers :  private, public, global,
+public Class Student {
+private String name;
+public Integer stdNo;
+public String courseName;
+private Integer trailheadPoint;
+
+				private void isTeamLead(){
+						System.debug(&#x27;I am Team Lead Today&#x27;);
+				
+				
+				}
+
+				public void getCertified(){
+						System.debug(&#x27;I have Salesforce Administrator Certificate&#x27;);
+				
+				
+				}
+
+
+
+}
+
+</code></pre></div><h3 id="cfe6d5e1-94a0-4b45-bd82-6b1f2d825d79" class=""><details open=""><summary>Inheritance</summary></details></h3><div class="indented"><p id="31361d5a-7cf7-49cb-9869-a5d846216e08" class="">Inherit the features to another class. Designing your code. DNA ( from mother or father ) You can copy the exactly same. Plus additionally common feature.</p><figure id="145a03ce-f3ac-4d82-8810-13db30a0c0f4" class="image"><a href="Untitled%2011.png"><img style="width:576px" src="Untitled%2011.png"/></a></figure><pre id="8b228eaa-f2ec-4b75-b80e-fb285de7b90a" class="code"><code>// interface
+// common features 
+public interface Oven {
+					Boolean openOven();
+					Boolean closeOven();
+}
+
+// this will inherit some general stuffs from the interface
+public class redOven implements Oven {
+							private Boolean isOpen;
+							private Boolean isClose;
+							
+							public Boolean openOven() {
+													isOpen=true;
+													return isOpen;
+							}
+							
+							
+							public Boolean closeOven() {
+															isClose=true;
+															return isClose;
+							}
+
+}
+
+</code></pre></div><h3 id="f4a190eb-eaa2-461f-af99-8c3d5ff13b03" class=""><details open=""><summary>Polymorphism</summary></details></h3><div class="indented"><p id="c47862d6-e8c9-46b4-9cd2-2978c1cb1dbd" class="">Multiple form or multiple definitions.</p><pre id="fec6ed6a-ec68-409a-8e79-b848caa32115" class="code"><code>// one form
+void calculate(String text){
+System.debug(lenght(text));
+System.debug(text);
+}
+
+// other form
+void calculate(Integer x,y){
+System.debug(x+y);
+}
+
+
+// using both forms
+calculate(&#x27;hello&#x27;);
+
+calculate(10,20);
+</code></pre></div><p id="ebb200ad-2a02-4ebd-85e2-98f63d6d5920" class="">
+</p></div><p id="f54ae429-3cf0-46c7-9f48-746d07037282" class="">
+</p><figure id="085ddcfe-7823-4f32-a2bc-c49169a5258d" class="link-to-page"><a href="Pillars%20examples%20Codes%20085ddcfe78234f32a2bcc49169a5258d.html">Pillars examples Codes</a></figure><p id="136473b6-25e1-4e4b-9f4f-14c3acb4f9e2" class="">
+</p><p id="c9c46fb7-7d50-4457-9a9c-40ab45bac678" class="">
+</p><figure id="beef1ecb-a3d1-4de7-85d3-4ae10af7d105" class="image"><a href="Untitled%2012.png"><img style="width:912px" src="Untitled%2012.png"/></a></figure><figure id="66140d0c-c509-42c9-a3ee-5b6f9c7f93be" class="image"><a href="Untitled%2013.png"><img style="width:1174px" src="Untitled%2013.png"/></a></figure><figure id="c67f44b7-de84-49b7-a63c-f5b42d064011" class="image"><a href="Untitled%2014.png"><img style="width:1238px" src="Untitled%2014.png"/></a></figure><figure id="1871a120-bf3f-4543-952a-6afbf625e08e" class="image"><a href="Untitled%2015.png"><img style="width:1215px" src="Untitled%2015.png"/></a></figure><pre id="5ee9c448-17b3-4de7-a006-a04998ed7301" class="code"><code>public class Flower {
+// body of class
+
+			public static Integer wilt(Integer numberOfPetals){
+			// method duties
+
+			}
+
+}
+
+
+// example of this code 
+public class Flower {
+    public static void wilt(Integer numberOfPetals){
+        if(numberOfPetals &gt;= 1){
+            numberOfPetals--;
+        }
+    }
+}</code></pre><ul id="92459d0c-64dd-47d7-af9a-45cc5f2903ce" class="toggle"><li><details open=""><summary><strong>Classes</strong></summary><p id="8e3e7a13-0502-45c7-aa1d-ad3a89f3ae5f" class="">A class defines a set of characteristics and behaviors that are common to all objects of that class. </p><ul id="eb2fa9e8-ac9a-40d0-98e2-696c156244ce" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Characteristic = <strong>Variables</strong></span></li></ul><ul id="7af81c49-9244-4f8d-9595-0dd07e7a3ca0" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Behaviors = <strong>Methods</strong></span></li></ul></details></li></ul><ul id="f617d2c1-6902-43f4-8ddd-d40a22eaf605" class="toggle"><li><details open=""><summary><strong>Declaring a Class</strong></summary><ul id="1b389c80-4610-46d2-b8c5-30ba3059b22c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">public = Access Modifier <mark class="highlight-blue_background"><strong>Optional</strong></mark></span></li></ul><ul id="a27ab1d6-3908-4f4e-9ddd-723c3fc37d46" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">class = keyword <mark class="highlight-red_background"><strong>Required</strong></mark></span></li></ul><ul id="07faa132-f552-4a90-acd6-7465bcd5a7d9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Flower = Class Name <mark class="highlight-red_background"><strong>Required</strong></mark></span></li></ul><ul id="fdb5bb9a-dc7e-4521-a731-0dabd3410e6d" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">static = Keyword <mark class="highlight-blue_background"><strong>Optional</strong></mark></span></li></ul><ul id="36ea06e2-7c67-43c1-8bed-45d98dc59e33" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Integer = Return Type <mark class="highlight-red_background"><strong>Required</strong></mark></span></li></ul><ul id="a665f97d-155f-4399-8ff8-43d2ccc56679" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">wilt = Method Name <mark class="highlight-red_background"><strong>Required</strong></mark></span></li></ul><ul id="05cc6329-1d2b-4b67-916a-9caf974a494f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">(Integer numberofPetals) = Parameter <mark class="highlight-blue_background"><strong>Optional</strong></mark></span></li></ul><ul id="44462cd4-7956-4626-bf2e-16057defbe3b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">void = Return Type ( No Return )</span></li></ul></details></li></ul><p id="8e2ab771-0a97-4d79-bd86-32fb06d99d6b" class="">
+</p><figure id="69fdd4db-4808-4bfc-96f2-7cf9b4b35a31" class="image"><a href="Untitled%2016.png"><img style="width:1131px" src="Untitled%2016.png"/></a></figure><figure id="83d1b670-a4ad-468d-8819-034647a44031" class="image"><a href="Untitled%2017.png"><img style="width:850px" src="Untitled%2017.png"/></a></figure><p id="a403ce4a-155a-42c5-86ab-08765b0b0668" class="">
+</p><p id="dd7b0a01-2786-4e94-af61-9b44544f8289" class=""><strong>SUMMARY</strong></p><figure id="a76e4361-1c0f-4874-894a-c0d3b4ea7947" class="image"><a href="Untitled%2018.png"><img style="width:1093px" src="Untitled%2018.png"/></a></figure><p id="5861747f-bd05-49ca-a0d8-b6bb8cfc5d8b" class="">
+</p><pre id="2f6c9cce-665f-4ee4-8937-8980bd6d834a" class="code"><code>
+// Class Definition
+
+Public class cal{
+
+// method Syntax
+public static Integer add(Integer number1, Integer number2){
+		Integer sum=number1+number2;
+		return sum;
+}
+
+}</code></pre><h3 id="8475b461-e167-4530-b49a-69a1f0b82c88" class=""><details open=""><summary>Example Class Construction and Call Functions</summary></details></h3><div class="indented"><figure id="65a7a194-ddbf-4d97-95ba-f6fb067b610d" class="link-to-page"><a href="Example%20Class%20Construction%20and%20Call%20Functions%20Shar%2065a7a194ddbf4d9795baf6fb067b610d.html"><span class="icon">🛠️</span>Example Class Construction and Call Functions Share before the class.</a></figure><pre id="44cc4cad-a1c2-45c0-aa3c-e360b4c154ea" class="code"><code>// Class Construction
+public class clarusway {
+	private Integer salesforce=0;
+    private Integer fullstack=0;
+    
+    public Integer getSalesforce(){
+        
+      return salesforce;  
+    }
+    
+    public void setSalesforce(Integer num){
+       salesforce+=num;
+    }
+    public Integer getFullStack(){
+       return fullstack; 
+    }
+    public void setFullStack(Integer num){
+      fullstack+=num;
+    }
+    
+}</code></pre><pre id="d25a0c56-d613-42d2-8212-85c98857323f" class="code"><code>//Call Functions.
+
+clarusway cohort1=new clarusway();
+
+system.debug(&#x27;SF cohort1 Students : &#x27;+cohort1.getSalesforce());
+cohort1.setSalesforce(3);
+
+system.debug(&#x27;SF cohort1 Students : &#x27;+cohort1.getSalesforce());
+cohort1.setSalesforce(2);
+
+system.debug(&#x27;SF cohort1 Students : &#x27;+cohort1.getSalesforce());
+
+clarusway cohort2=new clarusway();
+
+system.debug(&#x27;SF cohort2 Students : &#x27;+cohort2.getSalesforce());
+system.debug(&#x27;FS cohort2 Students : &#x27;+cohort2.getFullStack());
+
+cohort2.setSalesforce(15);
+cohort2.setFullStack(22);
+
+system.debug(&#x27;SF cohort2 Students : &#x27;+cohort2.getSalesforce());
+system.debug(&#x27;FS cohort2 Students : &#x27;+cohort2.getFullStack());
+
+Integer c1=cohort1.getSalesforce(); 
+Integer c2=cohort2.getSalesforce();
+  
+
+System.debug(&#x27;Cohort1 SF vs Cohort 2 : &#x27;+c1+&#x27; vs &#x27;+c2);</code></pre></div><h3 id="9d858e1a-5194-4db6-8f36-b44bb92f33cf" class=""><details open=""><summary>Access modifiers</summary></details></h3><div class="indented"><p id="2285074e-7d93-43ba-b52b-5a914226d93c" class=""><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_access_modifiers.htm">https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_access_modifiers.htm</a></p></div><p id="b3de0fc1-6a97-4a09-bebf-f4717968e034" class="">
+</p><p id="b6639d54-4b88-49bd-91a4-1fc59fcce3f1" class="">
+</p><p id="594a63ab-b4c1-452e-bc8e-a613ab2c27ba" class="">
+</p><h3 id="08d749cd-8b2e-43db-82f7-ee7d4d5160ed" class=""><details open=""><summary>Annotations</summary></details></h3><div class="indented"><p id="a014f3f3-3077-4b81-98db-50349ce22142" class=""><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_annotation.htm">https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_annotation.htm</a></p><p id="97b3e050-a128-48e8-82fc-b90d941b7031" class="">
+</p><pre id="1d368b24-b1e9-45cc-b845-4b0a8275dcf6" class="code"><code>@AuraEnabled
+@Deprecated
+@Future
+@InvocableMethod
+@InvocableVariable
+@IsTest
+@JsonAccess
+@NamespaceAccessible
+@ReadOnly
+@RemoteAction
+@SuppressWarnings
+@TestSetup
+@TestVisible</code></pre></div><p id="c8baa6ae-f692-4f20-9abb-3ee428947e41" class="">
+</p><p id="f738bba7-8e26-4b94-96f4-81935f64cc35" class="">
+</p><p id="37e76283-6b55-446e-8dac-e04f75d4cf6e" class="">
+</p><p id="dd495877-a2e8-4ecf-b40c-eb1e139cc92f" class="">
+</p><p id="5dc09598-89c5-4646-9888-c65164b27588" class="">
+</p><p id="4fc9bcf9-8a48-4ded-ad52-e8859cf181a0" class="">
+</p><p id="050820d7-ddbc-4d0d-8990-f8bd0ea69444" class="">
+</p></div></div><h3 id="07d55f5c-a321-4a81-8200-0480be2df4b4" class=""><details open=""><summary>TrailHead Handson Trainings</summary></details></h3><div class="indented"><figure id="3444fb68-5cd9-44aa-9cbf-6ad6e52066b8" class="link-to-page"><a href="Get%20Startted%20With%20Apex%20StringArrayTest%203444fb685cd944aa9cbf6ad6e52066b8.html"><span class="icon">💼</span>Get Startted With Apex StringArrayTest
+</a></figure></div><p id="dcecf385-5301-44c9-839e-28bf4f8c8f02" class="">
+</p><p id="353860e3-f6be-4dfd-9dc9-bcd61e2a1080" class="">
+</p><p id="2842c60c-48de-44d6-940f-cbc828bdecf5" class="">
+</p><p id="c6349545-3f6b-499e-a97f-d7a66436b7d3" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="0c556203-da5c-4289-bff4-d55bbe0005f8" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="b360a701-1eb4-4caf-b596-a8cb72cf9184" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="81db5562-8cea-4291-8d89-7e9040477262" class="">
+</p><p id="511d050d-586f-4aac-aadb-c240ba39d082" class=""><strong>Other Github Repos</strong></p><p id="2f214fd5-144d-42d7-becd-f08865282a08" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p></div></article></body></html>
