@@ -1,0 +1,783 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>SOQL</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="6795e470-2878-4347-87cb-a5ef75a1c337" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1483736762161-1d107f3c78e1?ixlib=rb-1.2.1&amp;q=80&amp;cs=tinysrgb&amp;fm=jpg&amp;crop=entropy" style="object-position:center 50%"/><h1 class="page-title">SOQL</h1></header><div class="page-body"><p id="db6fd227-0a86-46ef-9202-a4197b6c8002" class="">
+</p><p id="43af3d10-a912-4b74-a2e4-4a87ca73fb04" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="6f119a6f-d8b0-4795-86cb-a11d9a4630bd" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="3dd8efcf-dda7-4be1-917f-eb685a069b89" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="3ef93455-a9ce-453d-a144-2a8c44e952ee" class="">
+</p><p id="906981ea-32f7-4934-86fc-1efd5fd4f142" class=""><strong>Other Github Repos</strong></p><p id="96fdee15-1f12-48a3-a7b0-1f4ee2ffa31c" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p><p id="cd488df0-e96e-406b-b9c6-d97f7a2a276e" class="">
+</p><p id="a98d366b-b99b-45b4-817d-584666fb3423" class="">
+</p><figure id="84fb23c2-e88f-4289-b9a2-242109a04fd9" class="link-to-page"><a href="SOQL%206795e4702878434787cba5ef75a1c337/SOQL%20for%20In-Class%20Session%2084fb23c2e88f4289b9a2242109a04fd9.html">SOQL for In-Class Session</a></figure><p id="3aa86dca-119c-4cb2-94ca-7185c3b146d9" class="">
+</p><h3 id="90405cb5-ec2d-4711-8815-adcb2919cb1b" class=""><details open=""><summary>Tools to make Queries</summary></details></h3><div class="indented"><p id="e206bb2a-52fe-4912-b366-d0aa73c7ba25" class="">Developer Console</p><p id="be7a49c1-3579-45aa-a1b8-06cbc09f6746" class=""><a href="https://workbench.developerforce.com/login.php">https://workbench.developerforce.com/login.php</a></p><p id="16109fab-e140-48a0-b9c4-9f227f0c1503" class=""><a href="https://chrome.google.com/webstore/detail/salesforce-inspector/aodjmnfhjibkcdimpodiifdjnnncaafh?hl=en">https://chrome.google.com/webstore/detail/salesforce-inspector/aodjmnfhjibkcdimpodiifdjnnncaafh?hl=en</a></p><p id="337f859c-bcb1-4545-adf7-b7b517acf3d1" class="">
+</p></div><h2 id="c564ebd9-5e63-461e-9c7f-4d90b8629715" class=""><details open=""><summary>Definition</summary></details></h2><div class="indented"><p id="13075df2-c047-4899-99bb-6623b83096f2" class="">SOQL is a language that gets record data from a Salesforce database. In <a href="https://trailhead.salesforce.com/en/content/learn/modules/object-oriented-programming-for-admins">Object-Oriented Programming for Admins</a>  you learned that you can use Data Manipulation Language (DML) statements to insert, update, and delete records. But what if you want to get data that already exists in the database? SOQL makes it simple to retrieve data.</p><p id="2ee60982-f017-4527-bb41-b652521da5f2" class="">
+</p></div><p id="fc66e49b-b5cd-49d0-99f0-0b48e0d89ae6" class="">Creating SOQL queries is similar to creating a report. When you create a report, you answer questions such as</p><ul id="e198dac6-9894-4eae-a8d6-f10829e904ce" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">What fields do I want to display?</span></li></ul><ul id="03c1ce99-b97d-4f07-acac-a5824f4d09b8" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Where are those fields located?</span></li></ul><p id="13abed47-36b5-42a6-ad0a-0197502226af" class="">
+</p><pre id="304f2336-d964-45f3-a6a8-802529867212" class="code"><code>//SOQL Query is not SQL 
+
+SELECT Name, Email FROM Contact WHERE Title=&#x27;Clarusway&#x27;
+
+// required clauses SELECT * FROM</code></pre><h3 id="42e44842-d957-4540-b949-e61e694ba8be" class=""><details open=""><summary>WHERE</summary></details></h3><div class="indented"><ul id="092b0017-72ac-4f33-b5ed-3fa14928c1a8" class="toggle"><li><details open=""><summary>AND </summary><pre id="56a701af-f499-4bbc-8265-f8b57d8b5b7e" class="code"><code>WHERE FirstName = &#x27;Stella&#x27; AND LastName = &#x27;Pavlova&#x27;
+// Use AND to return records that meet two conditions.</code></pre></details></li></ul><ul id="8b5b128f-9d5b-4b37-a37d-80b04c963e71" class="toggle"><li><details open=""><summary>OR</summary><pre id="cfa21ecc-9f02-4310-8bcf-290ca6dc34e8" class="code"><code>WHERE LastName = &#x27;James&#x27; OR LastName = &#x27;Barr&#x27;
+// Use OR to return records that meet one of two conditions.</code></pre></details></li></ul><ul id="3db25357-43e5-41df-b1e2-5c965eaa75c0" class="toggle"><li><details open=""><summary>IN</summary><pre id="6c73cca6-ae25-44f6-9771-1753c51bdc36" class="code"><code>WHERE LastName IN (&#x27;James&#x27;, &#x27;Barr&#x27;, &#x27;Nedaerk&#x27;, &#x27;Forbes&#x27;)
+// Use IN to return records that meet at least one of three or more conditions.</code></pre></details></li></ul></div><h3 id="964ec3ea-9df3-4ad2-9cb8-5ad83e8e614a" class=""><details open=""><summary>LIMIT</summary></details></h3><div class="indented"><p id="31522bc2-f235-4d51-8455-8fb017b5153c" class="">The <code>LIMIT</code> keyword sets the maximum number of records to return.</p><pre id="b7f92cd9-220e-4915-a904-34f8658e9906" class="code"><code>SELECT Email, Name FROM Contact LIMIT 5</code></pre></div><h3 id="f5a76b9c-64db-46c5-bbec-952dae088bb7" class=""><details open=""><summary>ORDER BY</summary></details></h3><div class="indented"><ul id="30200277-5c10-4d7c-a12f-e28b988a5f97" class="toggle"><li><details open=""><summary>ASC</summary><pre id="7666bb12-861c-4d48-b1c2-0283cdb96cff" class="code"><code>SELECT Name, Email FROM Contact
+ORDER BY Name ASC
+LIMIT 5
+
+// ascending order</code></pre></details></li></ul><ul id="607680e4-584e-42d5-bc4d-a080f7c9dc2a" class="toggle"><li><details open=""><summary>DESC</summary><pre id="b29dad7e-d032-4ada-9215-274cc8db0b1d" class="code"><code>SELECT Name, Email FROM Contact
+ORDER BY Email DESC
+LIMIT 5
+
+// descending order</code></pre></details></li></ul><ul id="53b33f96-d320-46fe-88ae-8f25b8bd6754" class="toggle"><li><details open=""><summary>NULLS FIRST | LAST</summary><pre id="4cf9f540-3a80-4632-8626-406e1cca2adc" class="code"><code>SELECT Name, Email FROM Contact
+ORDER BY Email
+NULLS LAST
+
+// Returns null records at the beginning</code></pre></details></li></ul><p id="826a5fe8-97f7-4e3d-8294-058637db8c1a" class="">
+</p><p id="d7174f74-7818-4ce0-81a0-2ca4047ba618" class="">
+</p></div><pre id="81555db7-bd2a-4174-b3fc-07e0a3e2c6fc" class="code"><code>// Trailhead example
+
+public class AccountUtility {
+
+    public static void viewAnnualRevenue(){
+       //List&lt;Account&gt; accountsList = new List&lt;Account&gt;();
+        // SELECT Name, AnnualRevenue FROM Account
+       String acctRev;
+        List&lt;Account&gt; accountsList = [SELECT Name, AnnualRevenue FROM Account];
+        for (Account acc:accountsList){
+            acctRev=acc.Name+&#x27; : &#x27;+acc.AnnualRevenue;
+            
+            
+        }
+        
+        System.debug(&#x27;Results : &#x27;+ acctRev);
+    }  
+    
+}</code></pre><h3 id="a68881b3-c81f-48c6-801c-20b4c7fea2a4" class=""><details open=""><summary>DATE FORMATS</summary></details></h3><div class="indented"><p id="4237182c-6cd8-4a5a-8ecb-9dbd134680e9" class=""><a href="https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select_dateformats.htm#:~:text=For%20example%2C%20LAST_N_DAYS%3A1%20includes%20yesterday%20and%20today.&amp;text=For%20the%20number%20n%20provided%2C%20starts%2000%3A00%3A00,not%20include%20the%20current%20day">https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select_dateformats.htm#:~:text=For example%2C LAST_N_DAYS%3A1 includes yesterday and today.&amp;text=For the number n provided%2C starts 00%3A00%3A00,not include the current day</a>.</p><pre id="53f5a3a8-b033-4181-9a8b-4652226a4732" class="code"><code>LAST_N_DAYS:n
+NEXT_N_DAYS:n
+NEXT_N_WEEKS:n
+YESTERDAY
+TODAY
+TOMORROW
+
+// example usage
+SELECT Id FROM Account WHERE CreatedDate = LAST_N_DAYS:365
+
+// check others from the related web site.</code></pre></div><p id="f0ba669d-003f-41c6-a246-19542a3b72fa" class="">
+</p><h3 id="fd526d0a-16fb-4e43-b523-6a331d8d30e2" class=""><details open=""><summary>Bind Variables</summary></details></h3><div class="indented"><p id="3b3ff7fa-177d-4851-8f7c-860213ae02dd" class="">Use variable inside the SOQL statement<mark class="highlight-red_background"> ( : and variable name ) </mark></p><pre id="32e0f44c-b089-4f3a-ada3-7c9189a8b82c" class="code"><code>Integer maxHomeValue = 200000;
+List&lt;Property__c&gt; property = [SELECT Name, Price__c FROM Property__c 
+WHERE Price__c &lt; :maxHomeValue];</code></pre><h3 id="977a3378-f5ae-4579-9ea1-9ba9e957e401" class=""><details open=""><summary><strong>Aggregate Functions</strong></summary></details></h3><div class="indented"><p id="a7a950fe-fb04-48a3-9c8a-f6dfb66ed601" class="">In reports, you use roll-up summary fields to calculate values from related records. For example, you might want to calculate the total number of properties, or the average or highest value of properties in a city. In SOQL, you use aggregate functions to perform those and other calculations.</p><pre id="6093485e-1d8a-4ac4-80c8-25eb40ad9e07" class="code"><code>SELECT COUNT(Name) FROM Broker__c
+// Returns the number of rows that are associated with the field
+
+SELECT COUNT_DISTINCT(City__c) FROM Property__c
+// Returns the number of unique rows that match the query criteria
+
+SELECT MIN(Days_On_Market__c) FROM Property__c
+SELECT MAX(Beds__c)FROM Property__c
+// minimum and maximum value field
+
+SELECT City__c, AVG(Days_On_Market__c) FROM Property__c GROUP BY City__c
+// Returns the average value of a numeric field
+
+SELECT SUM(Price__c), Broker__r.Name FROM Property__c GROUP BY Broker__r.Name
+// Returns the total value of a numeric field</code></pre><ul id="bb60561b-bc72-49ac-9ecd-9c2756bd5e81" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">GROUP BY will group the results according to the preferences.</span></li></ul></div></div><h2 id="d9679ed3-ee85-4249-8183-0e4551f54af8" class=""><details open=""><summary>Relational Queries</summary></details></h2><div class="indented"><h3 id="e353d182-8ce4-418a-b3b2-ac4aaf938922" class=""><details open=""><summary>Identification of the Scheme</summary></details></h3><div class="indented"><p id="87caa294-8b81-49b1-96c2-42b3d18e78da" class="">As an admin, you’re familiar with master-detail relationships in an org. A master-detail relationship is a parent-to-child relationship. The master object is the parent, and the detail object is the child. If the two objects you want to include in a query have a master-detail relationship, then you know which is the parent and which is the child.</p></div><h3 id="0cc31ff8-43d8-4564-b2ab-85889cabb902" class=""><details open=""><summary>Child to Parent</summary></details></h3><div class="indented"><p id="5c11ac67-6585-48a9-b4f0-dc6a3689d35b" class="">
+</p><pre id="5a73acd0-dd31-4ed7-94de-563354147d1c" class="code"><code>
+// standard objects child to parent
+SELECT Name, Account.Name FROM Contact
+
+// custom objects child to parent
+SELECT Address__c, Picture__c, Broker__r.Name FROM Property__c</code></pre></div><h3 id="027d5edd-8aca-4c45-85c3-b723cfe9946a" class=""><details open=""><summary>Parent to Child</summary></details></h3><div class="indented"><pre id="9aa05c9d-6fb7-4ff2-b2da-6ebd05cc6c08" class="code"><code>SELECT Name, (SELECT Name FROM Contacts) FROM Account
+
+// filter the results
+SELECT Name, (SELECT Name FROM Contacts) FROM Account 
+WHERE Id IN (SELECT AccountId FROM Contact WHERE LastName = &#x27;Forbes&#x27;)
+
+
+// parent to child subquery
+SELECT Name, (SELECT Address__c, Price__c FROM Properties__r) FROM Broker__c</code></pre><ul id="ac4081e5-a137-43c7-9960-e8d6ab5793f0" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><mark class="highlight-red_background">Use Plural Version of Child Standard Object ( You can see on Child Relationship Name Section</mark></span></li></ul><ul id="a197b608-080e-4247-9e38-bdae92ea0e80" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><mark class="highlight-red_background">For Custom object you need to use __r extention</mark></span></li></ul><p id="99bc84ef-46c8-49ad-9b13-20df46fd41e5" class="">
+</p><p id="7cad4fb6-2393-4831-b290-565ca1820ebb" class="">
+</p><pre id="992a0f3e-fc23-48fa-a19c-1781d2273a15" class="code"><code>// Trailhead example
+
+public class PropertyUtility {
+
+    
+    public static void newListedProperties(){
+        String propEmail;
+      List&lt;Property__c&gt; newPropList = [SELECT Name, Broker__r.Email__c,Days_On_Market__c FROM Property__c WHERE Date_Listed__c = LAST_N_DAYS:30];
+        for (Property__c n_prop:newPropList){
+            
+            propEmail+=n_prop.Name+&#x27; : &#x27; +n_prop.Broker__r.Email__c+&#x27; \n&#x27;;
+        }
+        
+        System.debug(&#x27;propEmail : &#x27;+ propEmail);
+    
+    }
+}
+</code></pre><p id="5aa6f397-1472-4081-82f0-20cf85461af2" class="">
+</p><h2 id="9a7cb90b-6e70-4f2b-801f-7727c3f38e32" class=""><details open=""><summary>TrailHead Hands-on</summary></details></h2><div class="indented"><figure id="4d1cda2a-3872-4e46-ad88-15df7cddd626" class="link-to-page"><a href="SOQL%206795e4702878434787cba5ef75a1c337/SOQL%20Contact%204d1cda2a38724e46ad8815df7cddd626.html"><span class="icon">🏬</span>SOQL Contact</a></figure><p id="08a4db22-351b-4f30-a92e-e14644186086" class="">
+</p><p id="f14e6773-57e9-4916-89c8-16f991ef36d4" class="">
+</p><p id="d4ed82e4-3052-4a5a-863c-40d4067ad65a" class="">
+</p><p id="4cec0d0b-9c7a-40e2-8749-57570d41cd97" class="">
+</p><p id="2f86de9b-8c58-467e-bf44-7d9ecc52969e" class="">
+</p><p id="24d833b3-e748-4c70-a4a2-c721f9f1f046" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="8f6b90e4-695a-476c-9b14-26eb88631152" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="e91abc25-91fe-4bb4-bb74-781c64abc499" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="bfafe964-0260-4e81-a53f-07d3ca1d71ff" class="">
+</p><p id="02f7e83b-ad63-41b2-8d17-809c46db2c57" class=""><strong>Other Github Repos</strong></p><p id="9e5d6e4a-17b9-4683-ba97-eac76f4a683a" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p></div></div></div></div></article></body></html>
