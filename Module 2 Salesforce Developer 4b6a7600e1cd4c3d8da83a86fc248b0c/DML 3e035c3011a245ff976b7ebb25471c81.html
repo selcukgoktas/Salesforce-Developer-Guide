@@ -667,7 +667,94 @@ blockquote {
 }
 	
 </style></head><body><article id="3e035c30-11a2-45ff-976b-7ebb25471c81" class="page sans"><header><h1 class="page-title">DML</h1></header><div class="page-body"><p id="ae6b58a8-51fd-42da-8620-9b0c7590205a" class="">
-</p><p id="ff1be95d-3b2f-4a6f-a19f-3f12a256417a" class="">
+</p><h3 id="94a08884-349a-4e0b-89d1-8504bee980b4" class=""><details open=""><summary>Insert</summary></details></h3><div class="indented"><p id="e196badb-8c8a-4108-8798-1892765ed4c4" class="">The insert DML operation adds one or more sObjects</p><pre id="b2c8e8fa-0a5e-491d-a4f6-26c29892c6c4" class="code"><code>List&lt;Account&gt; multiAcc= New List&lt;Account&gt;();
+
+for (Integer i=1;i&lt;=10;i++){
+ Account singleAcc = New Account();   
+singleAcc.Name=&#x27;Loop Account &#x27;+i;
+// system.debug(&#x27;singleAcc : &#x27;+singleAcc);
+
+    multiAcc.add(singleAcc);
+    
+}
+
+
+// system.debug(&#x27;List : &#x27;+multiAcc);
+
+
+insert multiAcc;
+
+for(Account acc:multiAcc ){
+    
+    system.debug(acc.id+&#x27; id Account created succesfully&#x27;);
+}</code></pre></div><h3 id="3762bdf7-706d-432b-8d30-f98b1bbb10e5" class=""><details open=""><summary>Update</summary></details></h3><div class="indented"><pre id="00b3c87d-9368-42a0-9e4c-8c0bbb215a5b" class="code"><code>List&lt;Account&gt; multiAcc= [SELECT Name FROM Account WHERE Name LIKE &#x27;%Loop Account%&#x27;];
+List&lt;Account&gt; newAccs = New List&lt;Account&gt;();
+
+for (Account singleAcc:multiAcc){
+     
+  singleAcc.Phone=&#x27;111111&#x27;;
+    
+   newAccs.add(singleAcc);
+}
+
+update newAccs;
+
+System.debug(&#x27;newAccs : &#x27;+newAccs);</code></pre></div><h3 id="69cb5c29-031d-4290-8a72-be73b32da401" class=""><details open=""><summary>Delete</summary></details></h3><div class="indented"><pre id="e56586cb-d67e-4a5f-88c6-4e1b1a4bb44e" class="code"><code>// Find Duplicate Values and Delete duplication. Just keep first one.
+
+List&lt;Account&gt; multiAcc= [SELECT Name FROM Account WHERE Name LIKE &#x27;%Loop Account%&#x27;];
+List&lt;String&gt; checkAcc= New List&lt;String&gt;();
+List&lt;Account&gt; duplicateAcc=New List&lt;Account&gt;();
+
+for (Account singleAcc:multiAcc){
+     
+    if(checkAcc.contains(singleAcc.Name)){
+        // duplicate
+         System.debug(&#x27;Duplication : &#x27;+singleAcc);
+         duplicateAcc.add(singleAcc);
+    } 
+    checkAcc.add(singleAcc.Name);
+    System.debug(&#x27;checkAcc : &#x27;+checkAcc);
+   
+}
+System.debug(&#x27;Duplicated Account count : &#x27; + duplicateAcc.size());
+
+delete duplicateAcc;</code></pre></div><h3 id="942a5945-1cec-45ce-89c6-ab6ef15894ab" class=""><details open=""><summary>Upsert</summary></details></h3><div class="indented"><pre id="88c8eefd-621b-4279-a2f0-1162d2158254" class="code"><code>List&lt;Account&gt; multiAcc= [SELECT Name FROM Account WHERE Name LIKE &#x27;%Loop Account%&#x27;];
+List&lt;Account&gt; newAccs = New List&lt;Account&gt;();
+
+Account acc=New Account(name=&#x27;Selam Loop&#x27;, Phone=&#x27;33333&#x27;);
+
+for (Account singleAcc:multiAcc){
+     
+  singleAcc.Phone=&#x27;22222222&#x27;;
+    
+   newAccs.add(singleAcc);
+}
+
+newAccs.add(acc);
+
+
+upsert newAccs;
+
+System.debug(&#x27;newAccs : &#x27;+newAccs);</code></pre></div><h3 id="67622c70-e95c-4707-ac47-4bbf3bc5e13e" class=""><details open=""><summary>Undelete</summary></details></h3><div class="indented"><pre id="d3be182c-2bab-41b1-b55e-d17c59a75a2b" class="code"><code>List&lt;Account&gt; multiAcc= [SELECT Name, isDeleted FROM Account WHERE Name LIKE &#x27;%Loop Account%&#x27; ALL ROWS];
+
+List&lt;Account&gt; undelAccs= New List&lt;Account&gt;();
+
+
+for (Account acc:multiAcc) {
+    //System.debug(&#x27;Account info :&#x27; +acc.Name + &#x27;deleted Status : &#x27;+ acc.isDeleted);
+    if (acc.isDeleted){
+        undelAccs.add(acc);
+    }
+}
+
+System.debug(&#x27;Recyclebin Acc :&#x27;+undelAccs);
+
+undelete undelAccs;</code></pre></div><h3 id="655b4edb-9ec6-4927-944e-2ff21ecf8c5d" class=""><details open=""><summary>Merge</summary></details></h3><div class="indented"><pre id="7d483b6d-e199-40da-8a90-c3bede53c40d" class="code"><code>Account acc= New Account(name=&#x27;Combined Account&#x27;);
+insert acc;
+
+List&lt;Account&gt; multiAcc= [SELECT Name FROM Account WHERE Name LIKE &#x27;%Loop Account%&#x27; AND Phone=&#x27;111&#x27;];
+
+merge acc multiAcc;</code></pre></div><p id="ff1be95d-3b2f-4a6f-a19f-3f12a256417a" class="">
 </p><p id="8e3ce48d-da5e-4cce-838c-005f22a3df8d" class="">
 </p><p id="d34a5821-db29-416a-952d-bca34b85af66" class="">
 </p><p id="6d0591f7-1ee5-4d6d-ad98-8bd6adbfa20a" class="">

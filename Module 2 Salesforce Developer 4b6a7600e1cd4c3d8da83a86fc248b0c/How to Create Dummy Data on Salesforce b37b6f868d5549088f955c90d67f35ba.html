@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>AURA Components</title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>How to Create Dummy Data on Salesforce</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -666,117 +666,17 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="88345e54-b341-4bd2-9f5b-a1429344dbae" class="page sans"><header><h1 class="page-title">AURA Components</h1></header><div class="page-body"><p id="1f3a374b-979c-43e1-8f71-53c1588313dc" class="">
-</p><p id="23dc3a4d-9a2d-4db9-bb3c-c9a69ecd1bb4" class="">
-</p><figure id="51083171-0cbe-4272-a030-472bb5f70a16" class="image"><a href="AURA%20Components%2088345e54b3414bd29f5ba1429344dbae/Untitled.png"><img style="width:1133px" src="AURA%20Components%2088345e54b3414bd29f5ba1429344dbae/Untitled.png"/></a></figure><figure id="dfccb8d9-fb91-4144-84ef-d9aed1e842ec" class="image"><a href="AURA%20Components%2088345e54b3414bd29f5ba1429344dbae/Untitled%201.png"><img style="width:1697px" src="AURA%20Components%2088345e54b3414bd29f5ba1429344dbae/Untitled%201.png"/></a></figure><p id="95858a42-25d2-4766-87cf-54817537952d" class="">
-</p><p id="83294a6f-e461-4323-a473-e318fc181031" class=""><a href="https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm">https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm</a></p><p id="71b9fa63-0cc6-41b5-9d10-3e2a6436d31c" class="">
-</p><h3 id="635e13c3-5c61-4a11-ad49-97e9da6701b4" class=""><details open=""><summary>component</summary></details></h3><div class="indented"><pre id="8eb15394-041d-4648-b2cf-4b9a5b7ebc0f" class="code"><code>&lt;aura:component implements=&quot;force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction&quot; access=&quot;global&quot;&gt;
-
-    &lt;aura:attribute name=&quot;helloMsg&quot; type=&quot;String&quot; /&gt;
-    &lt;aura:handler name=&quot;init&quot; value=&quot;{!this}&quot; action=&quot;{!c.doInit}&quot;/&gt;
-     &lt;aura:attribute name=&quot;newAcc&quot; type=&quot;Account&quot;
-                     default=&quot;{&#x27;sobjectType&#x27;:&#x27;Account&#x27;,
-                              &#x27;Name&#x27;:&#x27;Test ACC AURA comp&#x27;
-                              } &quot;/&gt;
-    
-    &lt;aura:attribute name=&quot;arrayDemo&quot; type=&quot;String[]&quot;
-                    default =&quot;[&#x27;qqqqq&#x27;,&#x27;wwwww&#x27;,&#x27;eeeee&#x27;,&#x27;rrrrrr&#x27;,&#x27;tttttt&#x27;]&quot; /&gt;
-
-    &lt;h1&gt;{!v.newAcc.Name} &lt;/h1&gt;
-    
-    &lt;h2&gt;{!v.arrayDemo[0]} &lt;/h2&gt;
-&lt;/aura:component&gt;</code></pre><h3 id="b070eb91-9676-427b-8cf2-2e5022889d1f" class="">Controller</h3><pre id="51a4a6e7-74e0-465e-8b84-72e62c8c0377" class="code"><code>({
-	doInit : function(component, event, helper) {
-		component.set(&quot;v.helloMsg&quot;,&quot; Hello From Controller&quot;)
-	}
-})</code></pre><h3 id="1124be97-c85b-41ce-92ea-167925d42f54" class="">Application</h3><pre id="4ce903e9-2f87-46af-81d3-97a1a73dc4b9" class="code"><code>&lt;aura:application extends=&quot;force:slds&quot;&gt;
-	&lt;c:helloAura&gt;&lt;/c:helloAura&gt;
-    &lt;hr /&gt;
-     &lt;c:helloAura2&gt;&lt;/c:helloAura2&gt;
-&lt;/aura:application&gt;</code></pre></div><p id="e2eb1389-6f23-4d4c-b2bb-1907b57f80cb" class="">
-</p><p id="b9b4c4a0-c7a2-49b9-a8c7-aecfb78c4113" class="">
-</p><p id="8deab3aa-eb80-48b8-995b-36c1d4fb8789" class="">
-</p><h3 id="77340e04-7f7a-4b4b-8e23-22b75d98fe66" class=""><details open=""><summary>Button Click Actions</summary></details></h3><div class="indented"><p id="f4d9172a-177f-48fe-a7de-dcb0e90f7dc4" class=""><mark class="highlight-red_background">Supported Attribute</mark></p><p id="cbfd9018-9805-496b-9ad2-fab57f3064c2" class=""><a href="https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/ref_aura_attribute.htm">https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/ref_aura_attribute.htm</a></p><p id="17902ed7-5a14-44cb-a57b-1dc91fa38c85" class="">
-</p><pre id="8adf8799-6b1e-4b9b-b861-f2e0f86d47f8" class="code"><code>&lt;aura:component implements=&quot;force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction&quot; access=&quot;global&quot;&gt;
-
-   
-    &lt;aura:handler name=&quot;init&quot; value=&quot;{!this}&quot; action=&quot;{!c.doInit}&quot;/&gt;
-    &lt;aura:attribute name=&quot;newAcc&quot; type=&quot;Account&quot;
-                     default=&quot;{&#x27;sobjectType&#x27;:&#x27;Account&#x27;,
-                              &#x27;Name&#x27;:&#x27;Test ACC AURA comp&#x27;
-                              } &quot;/&gt;
-    
-    &lt;aura:attribute name=&quot;arrayDemo&quot; type=&quot;String[]&quot;
-                    default =&quot;[&#x27;tt1&#x27;,&#x27;werwer&#x27;,&#x27;sdffd&#x27;,&#x27;345345&#x27;,&#x27;35345&#x27;]&quot; /&gt;
-
-     &lt;aura:attribute name=&quot;helloMsg&quot; type=&quot;String&quot; /&gt;
-    &lt;aura:attribute name=&quot;buttonStatus&quot; type=&quot;String&quot;  default=&quot; buton is not clicked&quot;/&gt;
-    
-    
-    &lt;h1&gt;{!v.newAcc.Name} &lt;/h1&gt;
-    
-    &lt;h2&gt;{!v.arrayDemo[0]} &lt;/h2&gt;
-    
-    &lt;lightning:button label=&quot;ClickMe&quot; onclick=&quot;{!c.handleClick}&quot; /&gt;
-    
-    &lt;h1&gt;{!v.buttonStatus} &lt;/h1&gt;
-    
-&lt;/aura:component&gt;</code></pre><pre id="0e19f6e4-5036-4736-aa05-3fa3c216b107" class="code"><code>({
-	doInit : function(component, event, helper) {
-		component.set(&quot;v.helloMsg&quot;,&quot; Hello From Controller&quot;)
-	}
-    
-    
-    , handleClick: function(component, event, helper) {
-		component.set(&quot;v.buttonStatus&quot;,&quot; button is clicked&quot;)
-	}
-})</code></pre></div><p id="01a88142-0e58-4304-9464-63a24522288c" class="">
-</p><p id="a425ce33-2ac0-4c3b-b53b-65e170052782" class="">
-</p><h3 id="50133491-ba4b-48d8-9e44-eb0b029986f9" class=""><details open=""><summary>Button Click add more Javascript ( Counter Example) </summary></details></h3><div class="indented"><pre id="ed3af1de-7d77-41a2-b434-93554884e724" class="code"><code>&lt;aura:component implements=&quot;force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction&quot; access=&quot;global&quot;&gt;
-
-   
-    &lt;aura:handler name=&quot;init&quot; value=&quot;{!this}&quot; action=&quot;{!c.doInit}&quot;/&gt;
-    &lt;aura:attribute name=&quot;newAcc&quot; type=&quot;Account&quot;
-                     default=&quot;{&#x27;sobjectType&#x27;:&#x27;Account&#x27;,
-                              &#x27;Name&#x27;:&#x27;Test ACC AURA comp&#x27;
-                              } &quot;/&gt;
-    
-    &lt;aura:attribute name=&quot;arrayDemo&quot; type=&quot;String[]&quot;
-                    default =&quot;[&#x27;tt1&#x27;,&#x27;werwer&#x27;,&#x27;sdffd&#x27;,&#x27;345345&#x27;,&#x27;35345&#x27;]&quot; /&gt;
-
-     &lt;aura:attribute name=&quot;helloMsg&quot; type=&quot;String&quot; /&gt;
-    &lt;aura:attribute name=&quot;buttonStatus&quot; type=&quot;String&quot;  default=&quot; buton is not clicked&quot;/&gt;
-     &lt;aura:attribute name=&quot;clickcounter&quot; type=&quot;String&quot;  default=&quot;0&quot; /&gt;
-    
-    
-    &lt;h1&gt;{!v.newAcc.Name} &lt;/h1&gt;
-    
-    &lt;h2&gt;{!v.arrayDemo[0]} &lt;/h2&gt;
-    
-    &lt;lightning:button label=&quot;ClickMe&quot; onclick=&quot;{!c.handleClick}&quot; /&gt;
-    
-    &lt;h1&gt;{!v.buttonStatus} &lt;/h1&gt;
-         
-    &lt;h1&gt;Button {!v.clickcounter} times clicked &lt;/h1&gt;
-         
-    
-&lt;/aura:component&gt;</code></pre><pre id="42a12327-993d-48e7-80d6-c01fabbae5f3" class="code"><code>({
-	doInit : function(component, event, helper) {
-		component.set(&quot;v.helloMsg&quot;,&quot; Hello From Controller&quot;)
-	}
-    
-    
-    , handleClick: function(component, event, helper) {
-        
-        var counter = parseInt(component.get(&quot;v.clickcounter&quot;));
-        counter++;
-        
-		component.set(&quot;v.buttonStatus&quot;,&quot; button is clicked&quot;);
-        component.set(&quot;v.clickcounter&quot;,counter);
-	}
-})</code></pre><pre id="cba46b3b-b128-4e7e-8696-34fcecbe80dc" class="code"><code>parseInt</code></pre></div><p id="63312583-1f0d-4578-8838-f68615181cad" class="">
-</p><p id="a6b9061a-b84b-4c45-ae3f-68ef2f891cd4" class="">
-</p><p id="672fc0cf-ab62-492f-b856-5b619afe97e9" class="">
-</p><p id="a6b4d332-330a-414a-a596-4df56d2428f2" class="">
-</p><p id="46c7f14d-c349-48d8-907d-5d434c6c483c" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="76015ebf-2e5e-404e-81a2-f5d948f9e4a9" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="0f951354-0564-4ce3-a831-4030e2ec38a4" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="e7110cb8-5eae-410b-8ba0-358c394cc763" class="">
-</p><p id="c03fc7df-9925-4ea9-b713-48a2a40fc229" class=""><strong>Other Github Repos</strong></p><p id="aa5a55d9-f70b-4aea-9956-f17c4b95b9f3" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p></div></article></body></html>
+</style></head><body><article id="b37b6f86-8d55-4908-8f95-5c90d67f35ba" class="page sans"><header><h1 class="page-title">How to Create Dummy Data on Salesforce</h1></header><div class="page-body"><p id="bd549fdc-230d-4ee7-95fb-bcf9f1aae706" class="">
+</p><p id="1ed278af-41f9-426e-8a88-e3e0b6a95f1c" class="">
+</p><p id="3019f9a6-e6ec-4804-a455-d78efa4f109f" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="ee512a6e-0114-4458-a909-2eaf1aa08720" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="b55efc4b-b218-41c5-808f-5cc5c1771b38" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="fceca712-043e-4d97-8ad3-51a564b6e1bb" class="">
+</p><p id="cae06661-a772-45b9-ae35-b79ac69fde1c" class=""><strong>Other Github Repos</strong></p><p id="8dbe9cf7-b761-4218-a977-1bf9b8bf1ad6" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p><p id="6ab0d7d9-a8b6-46d8-89d6-8e201299a569" class="">
+</p><p id="219500e9-bff2-4cc9-b9aa-7af863bb5f38" class="">
+</p><p id="6ad6f2f7-f0b1-4ce9-9a1a-5862ea1a24b6" class="">
+</p><p id="5df86e33-0883-4fc0-b0a6-224f0e5aa9f9" class="">
+</p><figure id="78c93d37-8255-49ce-adc3-fec10ba3d47d" class="link-to-page"><a href="How%20to%20Create%20Dummy%20Data%20on%20Salesforce%20b37b6f868d5549088f955c90d67f35ba/Create%20Test%20Contacts%2078c93d37825549ceadc3fec10ba3d47d.html">Create Test Contacts</a></figure><figure id="1a09bd1a-4d9f-494e-a4de-854bae6ee7d6" class="link-to-page"><a href="How%20to%20Create%20Dummy%20Data%20on%20Salesforce%20b37b6f868d5549088f955c90d67f35ba/Delete%20Test%20Contacts%201a09bd1a4d9f494ea4de854bae6ee7d6.html">Delete Test Contacts</a></figure><p id="b157b07b-d999-48fe-bc60-570715bd987d" class="">
+</p><p id="b30d9ca4-730b-4bb0-b5d4-8493e11e6833" class="">
+</p><p id="78604d46-9079-4033-8be9-14ff45393781" class="">
+</p><p id="d3c82bdf-7bc6-4fe7-bea9-ccca32fd4afd" class="">
+</p><p id="6954997a-131e-4a26-987b-2f71479d3731" class="">
+</p><p id="41319fa3-493d-4b74-bf27-e33558f1180c" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="c3e08999-fb6d-47c5-926e-332caf4f4296" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="5544608d-49ef-466f-b1b0-bdcb4983af49" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="1bb97eac-6468-4e49-acb9-386dbaa6c7ce" class="">
+</p><p id="da649a61-88df-4c04-b710-317b1debdb4a" class=""><strong>Other Github Repos</strong></p><p id="c92c6c66-6b0f-4a35-a4a0-a71c36390cbb" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p></div></article></body></html>

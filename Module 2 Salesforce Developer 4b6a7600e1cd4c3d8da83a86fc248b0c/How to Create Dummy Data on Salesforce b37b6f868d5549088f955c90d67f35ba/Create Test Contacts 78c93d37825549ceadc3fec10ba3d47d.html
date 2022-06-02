@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>AURA Components</title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Create Test Contacts</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -666,117 +666,25 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="88345e54-b341-4bd2-9f5b-a1429344dbae" class="page sans"><header><h1 class="page-title">AURA Components</h1></header><div class="page-body"><p id="1f3a374b-979c-43e1-8f71-53c1588313dc" class="">
-</p><p id="23dc3a4d-9a2d-4db9-bb3c-c9a69ecd1bb4" class="">
-</p><figure id="51083171-0cbe-4272-a030-472bb5f70a16" class="image"><a href="AURA%20Components%2088345e54b3414bd29f5ba1429344dbae/Untitled.png"><img style="width:1133px" src="AURA%20Components%2088345e54b3414bd29f5ba1429344dbae/Untitled.png"/></a></figure><figure id="dfccb8d9-fb91-4144-84ef-d9aed1e842ec" class="image"><a href="AURA%20Components%2088345e54b3414bd29f5ba1429344dbae/Untitled%201.png"><img style="width:1697px" src="AURA%20Components%2088345e54b3414bd29f5ba1429344dbae/Untitled%201.png"/></a></figure><p id="95858a42-25d2-4766-87cf-54817537952d" class="">
-</p><p id="83294a6f-e461-4323-a473-e318fc181031" class=""><a href="https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm">https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm</a></p><p id="71b9fa63-0cc6-41b5-9d10-3e2a6436d31c" class="">
-</p><h3 id="635e13c3-5c61-4a11-ad49-97e9da6701b4" class=""><details open=""><summary>component</summary></details></h3><div class="indented"><pre id="8eb15394-041d-4648-b2cf-4b9a5b7ebc0f" class="code"><code>&lt;aura:component implements=&quot;force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction&quot; access=&quot;global&quot;&gt;
+</style></head><body><article id="78c93d37-8255-49ce-adc3-fec10ba3d47d" class="page sans"><header><h1 class="page-title">Create Test Contacts</h1></header><div class="page-body"><p id="2bf36b6b-7c4e-4fd3-b85e-fc6063975faf" class="">
+</p><p id="b7116647-73e1-49c4-acb3-fe55af316d69" class="">
+</p><p id="4cc0f362-b175-4049-9171-03811e63055c" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="6f751b6b-477f-46c2-9778-95b0601500fe" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="908b4184-d3b2-4d8b-9154-173ced18bd79" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="45215904-abf9-480f-aed9-ac65de9edd88" class="">
+</p><p id="d96e5f5a-9c84-481a-b53a-869486e01b35" class=""><strong>Other Github Repos</strong></p><p id="79c2789c-0f93-44cb-abec-1520a7bb7463" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p><p id="3ed6cfda-84fd-4140-acf4-53896845f819" class="">
+</p><pre id="057a7a82-2feb-4840-87dd-03aa9ec46037" class="code"><code>List&lt;Contact&gt; multiContacts = New List&lt;Contact&gt;();
 
-    &lt;aura:attribute name=&quot;helloMsg&quot; type=&quot;String&quot; /&gt;
-    &lt;aura:handler name=&quot;init&quot; value=&quot;{!this}&quot; action=&quot;{!c.doInit}&quot;/&gt;
-     &lt;aura:attribute name=&quot;newAcc&quot; type=&quot;Account&quot;
-                     default=&quot;{&#x27;sobjectType&#x27;:&#x27;Account&#x27;,
-                              &#x27;Name&#x27;:&#x27;Test ACC AURA comp&#x27;
-                              } &quot;/&gt;
+for (Integer counter=1;counter&lt;=100; counter++){
     
-    &lt;aura:attribute name=&quot;arrayDemo&quot; type=&quot;String[]&quot;
-                    default =&quot;[&#x27;qqqqq&#x27;,&#x27;wwwww&#x27;,&#x27;eeeee&#x27;,&#x27;rrrrrr&#x27;,&#x27;tttttt&#x27;]&quot; /&gt;
+    Contact singleContact = New Contact();
+    singleContact.firstName=&#x27;Apex Test &#x27;+counter;
+    singleContact.lastName=&#x27;Lastname  &#x27;+counter;
 
-    &lt;h1&gt;{!v.newAcc.Name} &lt;/h1&gt;
+multiContacts.add(singleContact);
     
-    &lt;h2&gt;{!v.arrayDemo[0]} &lt;/h2&gt;
-&lt;/aura:component&gt;</code></pre><h3 id="b070eb91-9676-427b-8cf2-2e5022889d1f" class="">Controller</h3><pre id="51a4a6e7-74e0-465e-8b84-72e62c8c0377" class="code"><code>({
-	doInit : function(component, event, helper) {
-		component.set(&quot;v.helloMsg&quot;,&quot; Hello From Controller&quot;)
-	}
-})</code></pre><h3 id="1124be97-c85b-41ce-92ea-167925d42f54" class="">Application</h3><pre id="4ce903e9-2f87-46af-81d3-97a1a73dc4b9" class="code"><code>&lt;aura:application extends=&quot;force:slds&quot;&gt;
-	&lt;c:helloAura&gt;&lt;/c:helloAura&gt;
-    &lt;hr /&gt;
-     &lt;c:helloAura2&gt;&lt;/c:helloAura2&gt;
-&lt;/aura:application&gt;</code></pre></div><p id="e2eb1389-6f23-4d4c-b2bb-1907b57f80cb" class="">
-</p><p id="b9b4c4a0-c7a2-49b9-a8c7-aecfb78c4113" class="">
-</p><p id="8deab3aa-eb80-48b8-995b-36c1d4fb8789" class="">
-</p><h3 id="77340e04-7f7a-4b4b-8e23-22b75d98fe66" class=""><details open=""><summary>Button Click Actions</summary></details></h3><div class="indented"><p id="f4d9172a-177f-48fe-a7de-dcb0e90f7dc4" class=""><mark class="highlight-red_background">Supported Attribute</mark></p><p id="cbfd9018-9805-496b-9ad2-fab57f3064c2" class=""><a href="https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/ref_aura_attribute.htm">https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/ref_aura_attribute.htm</a></p><p id="17902ed7-5a14-44cb-a57b-1dc91fa38c85" class="">
-</p><pre id="8adf8799-6b1e-4b9b-b861-f2e0f86d47f8" class="code"><code>&lt;aura:component implements=&quot;force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction&quot; access=&quot;global&quot;&gt;
+}
 
-   
-    &lt;aura:handler name=&quot;init&quot; value=&quot;{!this}&quot; action=&quot;{!c.doInit}&quot;/&gt;
-    &lt;aura:attribute name=&quot;newAcc&quot; type=&quot;Account&quot;
-                     default=&quot;{&#x27;sobjectType&#x27;:&#x27;Account&#x27;,
-                              &#x27;Name&#x27;:&#x27;Test ACC AURA comp&#x27;
-                              } &quot;/&gt;
-    
-    &lt;aura:attribute name=&quot;arrayDemo&quot; type=&quot;String[]&quot;
-                    default =&quot;[&#x27;tt1&#x27;,&#x27;werwer&#x27;,&#x27;sdffd&#x27;,&#x27;345345&#x27;,&#x27;35345&#x27;]&quot; /&gt;
 
-     &lt;aura:attribute name=&quot;helloMsg&quot; type=&quot;String&quot; /&gt;
-    &lt;aura:attribute name=&quot;buttonStatus&quot; type=&quot;String&quot;  default=&quot; buton is not clicked&quot;/&gt;
-    
-    
-    &lt;h1&gt;{!v.newAcc.Name} &lt;/h1&gt;
-    
-    &lt;h2&gt;{!v.arrayDemo[0]} &lt;/h2&gt;
-    
-    &lt;lightning:button label=&quot;ClickMe&quot; onclick=&quot;{!c.handleClick}&quot; /&gt;
-    
-    &lt;h1&gt;{!v.buttonStatus} &lt;/h1&gt;
-    
-&lt;/aura:component&gt;</code></pre><pre id="0e19f6e4-5036-4736-aa05-3fa3c216b107" class="code"><code>({
-	doInit : function(component, event, helper) {
-		component.set(&quot;v.helloMsg&quot;,&quot; Hello From Controller&quot;)
-	}
-    
-    
-    , handleClick: function(component, event, helper) {
-		component.set(&quot;v.buttonStatus&quot;,&quot; button is clicked&quot;)
-	}
-})</code></pre></div><p id="01a88142-0e58-4304-9464-63a24522288c" class="">
-</p><p id="a425ce33-2ac0-4c3b-b53b-65e170052782" class="">
-</p><h3 id="50133491-ba4b-48d8-9e44-eb0b029986f9" class=""><details open=""><summary>Button Click add more Javascript ( Counter Example) </summary></details></h3><div class="indented"><pre id="ed3af1de-7d77-41a2-b434-93554884e724" class="code"><code>&lt;aura:component implements=&quot;force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction&quot; access=&quot;global&quot;&gt;
-
-   
-    &lt;aura:handler name=&quot;init&quot; value=&quot;{!this}&quot; action=&quot;{!c.doInit}&quot;/&gt;
-    &lt;aura:attribute name=&quot;newAcc&quot; type=&quot;Account&quot;
-                     default=&quot;{&#x27;sobjectType&#x27;:&#x27;Account&#x27;,
-                              &#x27;Name&#x27;:&#x27;Test ACC AURA comp&#x27;
-                              } &quot;/&gt;
-    
-    &lt;aura:attribute name=&quot;arrayDemo&quot; type=&quot;String[]&quot;
-                    default =&quot;[&#x27;tt1&#x27;,&#x27;werwer&#x27;,&#x27;sdffd&#x27;,&#x27;345345&#x27;,&#x27;35345&#x27;]&quot; /&gt;
-
-     &lt;aura:attribute name=&quot;helloMsg&quot; type=&quot;String&quot; /&gt;
-    &lt;aura:attribute name=&quot;buttonStatus&quot; type=&quot;String&quot;  default=&quot; buton is not clicked&quot;/&gt;
-     &lt;aura:attribute name=&quot;clickcounter&quot; type=&quot;String&quot;  default=&quot;0&quot; /&gt;
-    
-    
-    &lt;h1&gt;{!v.newAcc.Name} &lt;/h1&gt;
-    
-    &lt;h2&gt;{!v.arrayDemo[0]} &lt;/h2&gt;
-    
-    &lt;lightning:button label=&quot;ClickMe&quot; onclick=&quot;{!c.handleClick}&quot; /&gt;
-    
-    &lt;h1&gt;{!v.buttonStatus} &lt;/h1&gt;
-         
-    &lt;h1&gt;Button {!v.clickcounter} times clicked &lt;/h1&gt;
-         
-    
-&lt;/aura:component&gt;</code></pre><pre id="42a12327-993d-48e7-80d6-c01fabbae5f3" class="code"><code>({
-	doInit : function(component, event, helper) {
-		component.set(&quot;v.helloMsg&quot;,&quot; Hello From Controller&quot;)
-	}
-    
-    
-    , handleClick: function(component, event, helper) {
-        
-        var counter = parseInt(component.get(&quot;v.clickcounter&quot;));
-        counter++;
-        
-		component.set(&quot;v.buttonStatus&quot;,&quot; button is clicked&quot;);
-        component.set(&quot;v.clickcounter&quot;,counter);
-	}
-})</code></pre><pre id="cba46b3b-b128-4e7e-8696-34fcecbe80dc" class="code"><code>parseInt</code></pre></div><p id="63312583-1f0d-4578-8838-f68615181cad" class="">
-</p><p id="a6b9061a-b84b-4c45-ae3f-68ef2f891cd4" class="">
-</p><p id="672fc0cf-ab62-492f-b856-5b619afe97e9" class="">
-</p><p id="a6b4d332-330a-414a-a596-4df56d2428f2" class="">
-</p><p id="46c7f14d-c349-48d8-907d-5d434c6c483c" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="76015ebf-2e5e-404e-81a2-f5d948f9e4a9" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="0f951354-0564-4ce3-a831-4030e2ec38a4" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="e7110cb8-5eae-410b-8ba0-358c394cc763" class="">
-</p><p id="c03fc7df-9925-4ea9-b713-48a2a40fc229" class=""><strong>Other Github Repos</strong></p><p id="aa5a55d9-f70b-4aea-9956-f17c4b95b9f3" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p></div></article></body></html>
+insert multiContacts; // upsert can also be used.</code></pre><p id="dc664bce-c44d-4638-a07b-1a223a2dc857" class="">
+</p><p id="927bb904-9b87-4d64-8124-61b64fee4644" class="">
+</p><p id="95e77826-6d94-43a9-8e35-14809f229c1f" class="">
+</p><p id="91086888-11a3-45da-bbd9-463b6e7e7479" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="8eb64cc6-b553-47b5-8f3c-4378b41dfd8d" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="9d087bea-b818-44ab-9a66-a00f514255e9" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="04563d48-dd22-46e4-9e51-0f3d016bb52c" class="">
+</p><p id="0797b92e-6f29-46db-b78d-3d94379bafcc" class=""><strong>Other Github Repos</strong></p><p id="c330d257-b733-40f8-ac52-b7e6563770b9" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p></div></article></body></html>

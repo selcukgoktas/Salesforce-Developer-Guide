@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>AURA Components</title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Get Contacts and Update</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -666,117 +666,15 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="88345e54-b341-4bd2-9f5b-a1429344dbae" class="page sans"><header><h1 class="page-title">AURA Components</h1></header><div class="page-body"><p id="1f3a374b-979c-43e1-8f71-53c1588313dc" class="">
-</p><p id="23dc3a4d-9a2d-4db9-bb3c-c9a69ecd1bb4" class="">
-</p><figure id="51083171-0cbe-4272-a030-472bb5f70a16" class="image"><a href="AURA%20Components%2088345e54b3414bd29f5ba1429344dbae/Untitled.png"><img style="width:1133px" src="AURA%20Components%2088345e54b3414bd29f5ba1429344dbae/Untitled.png"/></a></figure><figure id="dfccb8d9-fb91-4144-84ef-d9aed1e842ec" class="image"><a href="AURA%20Components%2088345e54b3414bd29f5ba1429344dbae/Untitled%201.png"><img style="width:1697px" src="AURA%20Components%2088345e54b3414bd29f5ba1429344dbae/Untitled%201.png"/></a></figure><p id="95858a42-25d2-4766-87cf-54817537952d" class="">
-</p><p id="83294a6f-e461-4323-a473-e318fc181031" class=""><a href="https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm">https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/intro_framework.htm</a></p><p id="71b9fa63-0cc6-41b5-9d10-3e2a6436d31c" class="">
-</p><h3 id="635e13c3-5c61-4a11-ad49-97e9da6701b4" class=""><details open=""><summary>component</summary></details></h3><div class="indented"><pre id="8eb15394-041d-4648-b2cf-4b9a5b7ebc0f" class="code"><code>&lt;aura:component implements=&quot;force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction&quot; access=&quot;global&quot;&gt;
-
-    &lt;aura:attribute name=&quot;helloMsg&quot; type=&quot;String&quot; /&gt;
-    &lt;aura:handler name=&quot;init&quot; value=&quot;{!this}&quot; action=&quot;{!c.doInit}&quot;/&gt;
-     &lt;aura:attribute name=&quot;newAcc&quot; type=&quot;Account&quot;
-                     default=&quot;{&#x27;sobjectType&#x27;:&#x27;Account&#x27;,
-                              &#x27;Name&#x27;:&#x27;Test ACC AURA comp&#x27;
-                              } &quot;/&gt;
-    
-    &lt;aura:attribute name=&quot;arrayDemo&quot; type=&quot;String[]&quot;
-                    default =&quot;[&#x27;qqqqq&#x27;,&#x27;wwwww&#x27;,&#x27;eeeee&#x27;,&#x27;rrrrrr&#x27;,&#x27;tttttt&#x27;]&quot; /&gt;
-
-    &lt;h1&gt;{!v.newAcc.Name} &lt;/h1&gt;
-    
-    &lt;h2&gt;{!v.arrayDemo[0]} &lt;/h2&gt;
-&lt;/aura:component&gt;</code></pre><h3 id="b070eb91-9676-427b-8cf2-2e5022889d1f" class="">Controller</h3><pre id="51a4a6e7-74e0-465e-8b84-72e62c8c0377" class="code"><code>({
-	doInit : function(component, event, helper) {
-		component.set(&quot;v.helloMsg&quot;,&quot; Hello From Controller&quot;)
-	}
-})</code></pre><h3 id="1124be97-c85b-41ce-92ea-167925d42f54" class="">Application</h3><pre id="4ce903e9-2f87-46af-81d3-97a1a73dc4b9" class="code"><code>&lt;aura:application extends=&quot;force:slds&quot;&gt;
-	&lt;c:helloAura&gt;&lt;/c:helloAura&gt;
-    &lt;hr /&gt;
-     &lt;c:helloAura2&gt;&lt;/c:helloAura2&gt;
-&lt;/aura:application&gt;</code></pre></div><p id="e2eb1389-6f23-4d4c-b2bb-1907b57f80cb" class="">
-</p><p id="b9b4c4a0-c7a2-49b9-a8c7-aecfb78c4113" class="">
-</p><p id="8deab3aa-eb80-48b8-995b-36c1d4fb8789" class="">
-</p><h3 id="77340e04-7f7a-4b4b-8e23-22b75d98fe66" class=""><details open=""><summary>Button Click Actions</summary></details></h3><div class="indented"><p id="f4d9172a-177f-48fe-a7de-dcb0e90f7dc4" class=""><mark class="highlight-red_background">Supported Attribute</mark></p><p id="cbfd9018-9805-496b-9ad2-fab57f3064c2" class=""><a href="https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/ref_aura_attribute.htm">https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/ref_aura_attribute.htm</a></p><p id="17902ed7-5a14-44cb-a57b-1dc91fa38c85" class="">
-</p><pre id="8adf8799-6b1e-4b9b-b861-f2e0f86d47f8" class="code"><code>&lt;aura:component implements=&quot;force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction&quot; access=&quot;global&quot;&gt;
-
-   
-    &lt;aura:handler name=&quot;init&quot; value=&quot;{!this}&quot; action=&quot;{!c.doInit}&quot;/&gt;
-    &lt;aura:attribute name=&quot;newAcc&quot; type=&quot;Account&quot;
-                     default=&quot;{&#x27;sobjectType&#x27;:&#x27;Account&#x27;,
-                              &#x27;Name&#x27;:&#x27;Test ACC AURA comp&#x27;
-                              } &quot;/&gt;
-    
-    &lt;aura:attribute name=&quot;arrayDemo&quot; type=&quot;String[]&quot;
-                    default =&quot;[&#x27;tt1&#x27;,&#x27;werwer&#x27;,&#x27;sdffd&#x27;,&#x27;345345&#x27;,&#x27;35345&#x27;]&quot; /&gt;
-
-     &lt;aura:attribute name=&quot;helloMsg&quot; type=&quot;String&quot; /&gt;
-    &lt;aura:attribute name=&quot;buttonStatus&quot; type=&quot;String&quot;  default=&quot; buton is not clicked&quot;/&gt;
-    
-    
-    &lt;h1&gt;{!v.newAcc.Name} &lt;/h1&gt;
-    
-    &lt;h2&gt;{!v.arrayDemo[0]} &lt;/h2&gt;
-    
-    &lt;lightning:button label=&quot;ClickMe&quot; onclick=&quot;{!c.handleClick}&quot; /&gt;
-    
-    &lt;h1&gt;{!v.buttonStatus} &lt;/h1&gt;
-    
-&lt;/aura:component&gt;</code></pre><pre id="0e19f6e4-5036-4736-aa05-3fa3c216b107" class="code"><code>({
-	doInit : function(component, event, helper) {
-		component.set(&quot;v.helloMsg&quot;,&quot; Hello From Controller&quot;)
-	}
-    
-    
-    , handleClick: function(component, event, helper) {
-		component.set(&quot;v.buttonStatus&quot;,&quot; button is clicked&quot;)
-	}
-})</code></pre></div><p id="01a88142-0e58-4304-9464-63a24522288c" class="">
-</p><p id="a425ce33-2ac0-4c3b-b53b-65e170052782" class="">
-</p><h3 id="50133491-ba4b-48d8-9e44-eb0b029986f9" class=""><details open=""><summary>Button Click add more Javascript ( Counter Example) </summary></details></h3><div class="indented"><pre id="ed3af1de-7d77-41a2-b434-93554884e724" class="code"><code>&lt;aura:component implements=&quot;force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction&quot; access=&quot;global&quot;&gt;
-
-   
-    &lt;aura:handler name=&quot;init&quot; value=&quot;{!this}&quot; action=&quot;{!c.doInit}&quot;/&gt;
-    &lt;aura:attribute name=&quot;newAcc&quot; type=&quot;Account&quot;
-                     default=&quot;{&#x27;sobjectType&#x27;:&#x27;Account&#x27;,
-                              &#x27;Name&#x27;:&#x27;Test ACC AURA comp&#x27;
-                              } &quot;/&gt;
-    
-    &lt;aura:attribute name=&quot;arrayDemo&quot; type=&quot;String[]&quot;
-                    default =&quot;[&#x27;tt1&#x27;,&#x27;werwer&#x27;,&#x27;sdffd&#x27;,&#x27;345345&#x27;,&#x27;35345&#x27;]&quot; /&gt;
-
-     &lt;aura:attribute name=&quot;helloMsg&quot; type=&quot;String&quot; /&gt;
-    &lt;aura:attribute name=&quot;buttonStatus&quot; type=&quot;String&quot;  default=&quot; buton is not clicked&quot;/&gt;
-     &lt;aura:attribute name=&quot;clickcounter&quot; type=&quot;String&quot;  default=&quot;0&quot; /&gt;
-    
-    
-    &lt;h1&gt;{!v.newAcc.Name} &lt;/h1&gt;
-    
-    &lt;h2&gt;{!v.arrayDemo[0]} &lt;/h2&gt;
-    
-    &lt;lightning:button label=&quot;ClickMe&quot; onclick=&quot;{!c.handleClick}&quot; /&gt;
-    
-    &lt;h1&gt;{!v.buttonStatus} &lt;/h1&gt;
-         
-    &lt;h1&gt;Button {!v.clickcounter} times clicked &lt;/h1&gt;
-         
-    
-&lt;/aura:component&gt;</code></pre><pre id="42a12327-993d-48e7-80d6-c01fabbae5f3" class="code"><code>({
-	doInit : function(component, event, helper) {
-		component.set(&quot;v.helloMsg&quot;,&quot; Hello From Controller&quot;)
-	}
-    
-    
-    , handleClick: function(component, event, helper) {
-        
-        var counter = parseInt(component.get(&quot;v.clickcounter&quot;));
-        counter++;
-        
-		component.set(&quot;v.buttonStatus&quot;,&quot; button is clicked&quot;);
-        component.set(&quot;v.clickcounter&quot;,counter);
-	}
-})</code></pre><pre id="cba46b3b-b128-4e7e-8696-34fcecbe80dc" class="code"><code>parseInt</code></pre></div><p id="63312583-1f0d-4578-8838-f68615181cad" class="">
-</p><p id="a6b9061a-b84b-4c45-ae3f-68ef2f891cd4" class="">
-</p><p id="672fc0cf-ab62-492f-b856-5b619afe97e9" class="">
-</p><p id="a6b4d332-330a-414a-a596-4df56d2428f2" class="">
-</p><p id="46c7f14d-c349-48d8-907d-5d434c6c483c" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="76015ebf-2e5e-404e-81a2-f5d948f9e4a9" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="0f951354-0564-4ce3-a831-4030e2ec38a4" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="e7110cb8-5eae-410b-8ba0-358c394cc763" class="">
-</p><p id="c03fc7df-9925-4ea9-b713-48a2a40fc229" class=""><strong>Other Github Repos</strong></p><p id="aa5a55d9-f70b-4aea-9956-f17c4b95b9f3" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p></div></article></body></html>
+</style></head><body><article id="b815578b-a2b1-4d1c-a765-b71dc4af6ebe" class="page sans"><header><h1 class="page-title">Get Contacts and Update</h1></header><div class="page-body"><p id="f9ebed8f-bebc-4476-895a-8420ea816ad1" class="">
+</p><p id="e7c3739a-2d75-4fc7-aeb6-31791eb01faa" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="68306910-cbb1-444f-9159-27910fad6f4b" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="176f37b7-3a83-4bf1-8eb2-53a899f21b6f" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="71ca4578-dbf0-48b3-b435-4ae199281472" class="">
+</p><p id="a13c4c63-b076-4a56-8200-5e8a93915f32" class=""><strong>Other Github Repos</strong></p><p id="9f304475-3986-434d-9830-45a48e29ba65" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p><p id="5225c0e5-bc95-4fc7-b807-8820f7d9adbe" class="">
+</p><p id="ecaa81cf-0fd1-4b46-8848-403bef701e0f" class="">
+</p><figure id="7ed7ccf6-f451-4ab2-9a0f-d2c7ca66029e" class="image"><a href="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled.png"><img style="width:1080px" src="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled.png"/></a></figure><figure id="f21a0729-35c9-4718-805a-9880618cffd9" class="image"><a href="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%201.png"><img style="width:1809px" src="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%201.png"/></a></figure><figure id="97b2242c-6e4c-45c5-bb7a-743c763d5808" class="image"><a href="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%202.png"><img style="width:1831px" src="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%202.png"/></a></figure><figure id="08c868ec-9690-4850-bd5d-47532f578bc4" class="image"><a href="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%203.png"><img style="width:1793px" src="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%203.png"/></a></figure><figure id="c83b7ad4-5cd1-47e4-b8ad-ba26e85cbb96" class="image"><a href="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%204.png"><img style="width:1810px" src="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%204.png"/></a></figure><figure id="301731ee-eac8-46e4-86e3-ea04aafe2669" class="image"><a href="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%205.png"><img style="width:1970px" src="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%205.png"/></a></figure><figure id="4671a761-fa0f-4ced-a6c6-1daf4c8261a2" class="image"><a href="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%206.png"><img style="width:1617px" src="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%206.png"/></a></figure><figure id="aa12d2b6-68f4-46c1-a2fa-14faff8757e1" class="image"><a href="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%207.png"><img style="width:1952px" src="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%207.png"/></a></figure><figure id="7e2387ca-d5fe-46f3-8556-01389f41c01e" class="image"><a href="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%208.png"><img style="width:1949px" src="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%208.png"/></a></figure><figure id="f7a06b45-ecc9-4727-9317-c72d885eb224" class="image"><a href="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%209.png"><img style="width:1803px" src="Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe/Untitled%209.png"/></a></figure><p id="15f0459c-cea8-41b6-b045-bdeaffc979da" class="">
+</p><p id="fd57741c-2a69-4bfb-9d3e-c4a20cf62bb8" class="">
+</p><p id="8f3cd519-3ff0-4935-9136-eec34dd646ab" class="">
+</p><p id="e18286c8-3f16-43ae-97f5-d50d7e195df6" class="">
+</p><p id="53fc5329-4232-42cb-9460-1dc8d87390c1" class="">
+</p><p id="cd68ed5a-58df-4be1-812e-99587d1b766c" class="">
+</p><p id="d44792b2-c5b3-4fc4-952e-af1f281568df" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="70f3d0ec-e31b-4da6-a444-d275fbdd40e9" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="d5dee7e8-cff1-4572-88af-f18282ae162a" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="22c0b9af-e63d-44d4-ac0d-34f381153d0f" class="">
+</p><p id="2d00c151-2004-42bd-b831-e53fdeba86e1" class=""><strong>Other Github Repos</strong></p><p id="7f20a9d0-69cb-4d08-99b4-2eacbca6e06a" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p></div></article></body></html>
