@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Flow vs Apex</title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Search Account and Add this Account Opportunity</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -666,13 +666,52 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="2ad89f46-2fbc-4473-a049-9fd62a3dbc4b" class="page sans"><header><h1 class="page-title">Flow vs Apex</h1></header><div class="page-body"><p id="67189752-b627-44d3-8859-524dc9df1282" class="">
-</p><p id="417b5d7c-36b2-4044-97e1-f882633d3c62" class="">
-</p><p id="98b7f69b-df6b-448d-8a1e-df8673880415" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="b5ced1f1-ce37-454c-8559-bc76985f2460" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="0349c972-2ded-4553-9178-0930ee041dd4" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="6e35e2bc-d72b-4040-8c35-f012ce24dd71" class="">
-</p><p id="bea3653a-e23f-4cbb-aa9b-8ee30a1216d0" class=""><strong>Other Github Repos</strong></p><p id="73acb4a0-a073-444e-8c90-7bba461fe56b" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p><p id="8bb920c8-113a-4065-920c-bd871059cb33" class="">
-</p><p id="da0551fb-1622-4d01-9a47-8837f2b380c5" class="">
-</p><figure id="f29e8660-e428-46dc-bc0e-f4fe345cf466" class="link-to-page"><a href="Flow%20vs%20Apex%202ad89f462fbc4473a0499fd62a3dbc4b/Create%20single%20Contact,%20Add%20Contacts%20to%20multi%20Conta%20f29e8660e42846dcbc0ef4fe345cf466.html">Create single Contact, Add Contacts to multi Contact Object and Create records with single DML statement.</a></figure><figure id="b815578b-a2b1-4d1c-a765-b71dc4af6ebe" class="link-to-page"><a href="Flow%20vs%20Apex%202ad89f462fbc4473a0499fd62a3dbc4b/Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe.html">Get Contacts and Update</a></figure><figure id="497fd717-453e-4cfc-aa38-a32f6a8149a2" class="link-to-page"><a href="Flow%20vs%20Apex%202ad89f462fbc4473a0499fd62a3dbc4b/Create%20Account%20and%20Contact%20Together%20497fd717453e4cfcaa38a32f6a8149a2.html">Create Account and Contact Together</a></figure><figure id="1df5ec02-8c65-43e3-abcf-06ed647255cf" class="link-to-page"><a href="Flow%20vs%20Apex%202ad89f462fbc4473a0499fd62a3dbc4b/Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf.html">Search Account and Add this Account Opportunity</a></figure><p id="a4b6a3f4-bf35-461c-8e8e-c4eca7834eb1" class="">
-</p><p id="7a68413a-17fb-45db-a9ae-99976e5f0bd3" class="">
-</p><p id="3a6f31aa-cd7a-4805-8679-907b5d5eb3f7" class="">
-</p><p id="0d275cfa-7865-436f-9fd2-5298048f6f9f" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="9804d395-709b-4507-9005-08c30f4b5f94" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="b4c18745-0761-41e8-a397-23799b5311ee" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="c0ddad5a-c765-4aae-96d7-3639a611aed2" class="">
-</p><p id="a9a7487f-eed1-44f3-95cc-98dc94d12b59" class=""><strong>Other Github Repos</strong></p><p id="abf2c242-931a-4bcf-8161-6582f1cbeda6" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p></div></article></body></html>
+</style></head><body><article id="1df5ec02-8c65-43e3-abcf-06ed647255cf" class="page sans"><header><h1 class="page-title">Search Account and Add this Account Opportunity</h1></header><div class="page-body"><p id="16ee5a57-53d4-4ff0-8cc9-d6b70d08f24b" class="">
+</p><p id="f79760db-8856-4532-8c6e-30a65b210cdd" class="">
+</p><pre id="67f21d14-1250-41f2-8e0d-7eb87f75967d" class="code"><code>// SELECT id, Name FROM Account WHERE Name =&#x27;APEX ESTA LLC&#x27; LIMIT 1
+
+Account singleAccount = [SELECT id, Name FROM Account WHERE Name =&#x27;APEX ESTA LLC&#x27; LIMIT 1];
+
+singleAccount.Industry=&#x27;Education&#x27;;
+
+update singleAccount;
+
+
+Opportunity singleOpportunity = New Opportunity();
+
+String opName =singleAccount.Name + &#x27; 🔥 &#x27; + &#x27; Webinar APEX&#x27;;
+Date futureDate = date.today()+20;
+
+singleOpportunity.Name=opName;
+singleOpportunity.CloseDate =futureDate;
+singleOpportunity.StageName=&#x27;Prospecting&#x27;;
+singleOpportunity.Amount = 5000;
+singleOpportunity.AccountId=singleAccount.id; // lookup Relation
+
+insert singleOpportunity;
+
+if(String.isBlank(singleOpportunity.id)){
+    System.Debug(&#x27;Opportunity Cannot be Created&#x27;);
+} else {
+      System.Debug(&#x27;Opportunity Created&#x27;);
+}</code></pre><p id="9a53d871-b4b5-4ab0-9f8b-9a4ac0cacc9a" class="">
+</p><p id="4ffccd08-e455-4e00-aa7c-87bc31fa3da0" class="">
+</p><figure id="fcb025c9-49cf-455b-8b87-e09ea6b37d8e" class="image"><a href="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/Untitled.png"><img style="width:1972px" src="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/Untitled.png"/></a></figure><p id="b50d8699-13aa-4cd2-93d2-6e82d57afff8" class="">
+</p><figure id="0cde6376-5baa-4657-9f14-5c5a5f8193e8" class="image"><a href="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/Untitled%201.png"><img style="width:1764px" src="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/Untitled%201.png"/></a></figure><p id="eb0c2019-873c-425f-841b-a87611fe9d36" class="">
+</p><figure id="5faf77bb-3db6-4c10-9d18-3205d9136c6a" class="image"><a href="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/Untitled%202.png"><img style="width:1783px" src="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/Untitled%202.png"/></a></figure><p id="7317b506-cae3-4f42-b270-f124a6e11a1d" class="">
+</p><p id="a5256a6b-1682-491d-8960-166ada1fce1e" class="">
+</p><figure id="4c06f25c-5b3d-49d1-a0b2-39cb3ff25d4f" class="image"><a href="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/Untitled%203.png"><img style="width:1778px" src="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/Untitled%203.png"/></a></figure><figure id="bddab70e-7f7f-4a9a-908b-570df13df13e" class="image"><a href="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/Untitled%204.png"><img style="width:1776px" src="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/Untitled%204.png"/></a></figure><p id="869e3374-86ae-49da-819c-d4c7a20a9ede" class="">
+</p><figure id="e9cf5aea-4fd6-4e02-9298-94d08412d502" class="image"><a href="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/Untitled%205.png"><img style="width:1780px" src="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/Untitled%205.png"/></a></figure><p id="4e9dbfe6-c1fd-4cbc-b592-2b49c0b59f45" class="">
+</p><figure id="092127c3-e98b-46f8-9657-d3dc1fc229a9" class="image"><a href="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/Untitled%206.png"><img style="width:1762px" src="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/Untitled%206.png"/></a></figure><p id="abc665d2-46dd-4000-ab80-431e5547bf7f" class="">
+</p><p id="edaa4668-8515-461b-84cc-2618ed22aa4a" class="">
+</p><figure id="905ed467-8483-4647-b5bc-02b46bfdf357" class="image"><a href="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/Untitled%207.png"><img style="width:1775px" src="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/Untitled%207.png"/></a></figure><p id="2bb6a941-1d57-4fc1-9616-b90d9c1a58d3" class="">
+</p><figure id="e8f66e26-b8a3-49d4-a64f-b2680b69ddc7" class="image"><a href="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/2022-06-04_13h46_43.png"><img style="width:1749px" src="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/2022-06-04_13h46_43.png"/></a></figure><p id="c0caba08-8b77-41c4-9d5e-410866ae3622" class="">
+</p><p id="ea0a28ce-f165-4914-8875-9e389e718740" class="">
+</p><p id="47717de5-fe8b-4cea-a92c-dd595b35225c" class="block-color-red_background">Below steps is not applicable methods for real life example. For real life you should use the fault connectors. Its equal with the TRY CATCH in APEX. We will handle this steps later. </p><p id="58d1bb9d-0e61-4916-8d13-7939527cb7df" class="">  </p><p id="dc8a823c-16a5-4cf6-957a-f3d0ef37219c" class=""><strong>We can use if Conditions in flow with two way. </strong></p><p id="2fcc37fb-f8ab-474b-abb9-7026a4c214c9" class=""><strong>One is Formula. The other one is decision. </strong></p><p id="cac65485-5904-46ad-89a8-11d1410879e5" class="">
+</p><p id="cd15da49-2e08-48c1-b4a1-c6e217b14bd4" class="">Usage of formula</p><figure id="e2cee65c-c618-4d3b-8b93-09604c8e2ffe" class="image"><a href="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/2022-06-04_13h49_20.png"><img style="width:1755px" src="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/2022-06-04_13h49_20.png"/></a></figure><p id="ba85580b-9fb3-4f8d-b5f8-59c3317e0799" class="">
+</p><p id="6cff3fe3-8e0f-40e6-bd21-80f8c285e6e0" class=""><strong>Usage of decision element</strong></p><figure id="c0bd6b00-d944-44fc-bb8b-1b1fae8f36e9" class="image"><a href="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/2022-06-04_13h51_09.png"><img style="width:1858px" src="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/2022-06-04_13h51_09.png"/></a></figure><p id="7d622960-f4d9-419a-9b73-1efdd889d5cd" class="">
+</p><p id="ed8b5c0c-25f7-490e-823c-94ef325057f8" class=""><strong>When you create decision your flow will like that.</strong></p><p id="88769ea0-8e21-473d-a73f-945d804894cf" class="">
+</p><figure id="50407ebb-c7c7-422e-b482-6561230fa405" class="image"><a href="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/2022-06-04_13h55_02.png"><img style="width:1575px" src="Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf/2022-06-04_13h55_02.png"/></a></figure><p id="f168f1f3-9c8e-4a5a-863b-0d0ea06c5085" class="">
+</p><p id="7bead620-3ebc-4746-a45f-c9247eb30dd2" class="">
+</p><p id="4bf62f1e-ef29-46b8-af23-1248961a0872" class="">
+</p></div></article></body></html>

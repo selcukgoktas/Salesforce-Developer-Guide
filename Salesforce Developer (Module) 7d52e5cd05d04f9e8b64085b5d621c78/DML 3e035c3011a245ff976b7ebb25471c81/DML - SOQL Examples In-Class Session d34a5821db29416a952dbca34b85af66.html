@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Flow vs Apex</title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>DML - SOQL Examples In-Class Session</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -666,13 +666,83 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="2ad89f46-2fbc-4473-a049-9fd62a3dbc4b" class="page sans"><header><h1 class="page-title">Flow vs Apex</h1></header><div class="page-body"><p id="67189752-b627-44d3-8859-524dc9df1282" class="">
-</p><p id="417b5d7c-36b2-4044-97e1-f882633d3c62" class="">
-</p><p id="98b7f69b-df6b-448d-8a1e-df8673880415" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="b5ced1f1-ce37-454c-8559-bc76985f2460" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="0349c972-2ded-4553-9178-0930ee041dd4" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="6e35e2bc-d72b-4040-8c35-f012ce24dd71" class="">
-</p><p id="bea3653a-e23f-4cbb-aa9b-8ee30a1216d0" class=""><strong>Other Github Repos</strong></p><p id="73acb4a0-a073-444e-8c90-7bba461fe56b" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p><p id="8bb920c8-113a-4065-920c-bd871059cb33" class="">
-</p><p id="da0551fb-1622-4d01-9a47-8837f2b380c5" class="">
-</p><figure id="f29e8660-e428-46dc-bc0e-f4fe345cf466" class="link-to-page"><a href="Flow%20vs%20Apex%202ad89f462fbc4473a0499fd62a3dbc4b/Create%20single%20Contact,%20Add%20Contacts%20to%20multi%20Conta%20f29e8660e42846dcbc0ef4fe345cf466.html">Create single Contact, Add Contacts to multi Contact Object and Create records with single DML statement.</a></figure><figure id="b815578b-a2b1-4d1c-a765-b71dc4af6ebe" class="link-to-page"><a href="Flow%20vs%20Apex%202ad89f462fbc4473a0499fd62a3dbc4b/Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe.html">Get Contacts and Update</a></figure><figure id="497fd717-453e-4cfc-aa38-a32f6a8149a2" class="link-to-page"><a href="Flow%20vs%20Apex%202ad89f462fbc4473a0499fd62a3dbc4b/Create%20Account%20and%20Contact%20Together%20497fd717453e4cfcaa38a32f6a8149a2.html">Create Account and Contact Together</a></figure><figure id="1df5ec02-8c65-43e3-abcf-06ed647255cf" class="link-to-page"><a href="Flow%20vs%20Apex%202ad89f462fbc4473a0499fd62a3dbc4b/Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf.html">Search Account and Add this Account Opportunity</a></figure><p id="a4b6a3f4-bf35-461c-8e8e-c4eca7834eb1" class="">
-</p><p id="7a68413a-17fb-45db-a9ae-99976e5f0bd3" class="">
-</p><p id="3a6f31aa-cd7a-4805-8679-907b5d5eb3f7" class="">
-</p><p id="0d275cfa-7865-436f-9fd2-5298048f6f9f" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="9804d395-709b-4507-9005-08c30f4b5f94" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="b4c18745-0761-41e8-a397-23799b5311ee" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="c0ddad5a-c765-4aae-96d7-3639a611aed2" class="">
-</p><p id="a9a7487f-eed1-44f3-95cc-98dc94d12b59" class=""><strong>Other Github Repos</strong></p><p id="abf2c242-931a-4bcf-8161-6582f1cbeda6" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p></div></article></body></html>
+</style></head><body><article id="d34a5821-db29-416a-952d-bca34b85af66" class="page sans"><header><h1 class="page-title">DML - SOQL Examples In-Class Session</h1></header><div class="page-body"><p id="76a14007-3e01-409d-bb45-05b4fbedce49" class="">
+</p><p id="63906819-4273-4e15-9255-b84c1a0fbf70" class="">Add Single Account with Insert</p><pre id="28ca1cad-2285-49ff-ac3f-2b9310d65e42" class="code"><code>// datatype variableName = exp 
+
+Account singleAcc= New Account(name=&#x27;New Account from APEX&#x27;,phone=&#x27;123123123&#x27;);
+
+System.debug(singleAcc);
+
+// DML variable sent to Salesforce DB
+insert singleAcc;</code></pre><p id="961263df-7da4-4ac1-a73f-0ff4ef18b287" class="">
+</p><p id="3bf6d006-3554-4fe3-a806-3ab5f7ed3f9c" class="">
+</p><p id="a14d1967-af57-4472-b51a-9a0041802e6e" class="">Add Account and Contact with Insert</p><pre id="fb82566e-9d2e-43e9-9d7d-35cada4604b7" class="code"><code>// datatype variableName = exp 
+Account singleAcc= New Account();
+
+singleAcc.Name=&#x27;APEX ACC HAS CONTACT LLC&#x27;;
+singleAcc.Phone=&#x27;+11111111&#x27;;
+singleAcc.Website=&#x27;www.ACC1.com&#x27;;
+singleAcc.Rating=&#x27;Hot&#x27;;
+System.debug(&#x27;Account BEFORE INSERT ID: &#x27;+ singleAcc.id);
+
+// DML variable sent to Salesforce DB
+insert singleAcc;
+
+System.debug(&#x27;Account AFTER INSERT  ID: &#x27;+ singleAcc.id);
+
+// contact oluşturma
+Contact singleContact = New Contact();
+singleContact.firstName=&#x27;Alex&#x27;;
+singleContact.lastName=&#x27;Victor&#x27;; // required
+singleContact.AccountId=singleAcc.id;   // Lookup  this field is required account id from account object
+System.debug(&#x27;Contact BEFORE INSERT ID: &#x27;+ singleContact.id);
+
+// DML contact creation request to SALESFORCE
+insert singleContact;
+
+System.debug(&#x27;Contact BEFORE INSERT ID: &#x27;+ singleContact.id);</code></pre><p id="5f8218e3-047e-42fe-80ed-b1ce7ec5fdd4" class="">
+</p><p id="2d3570ce-4474-4841-863d-86762cd5af7f" class="">
+</p><p id="f1525b97-77d3-44f1-b6e5-ababab452d7b" class="">Update Account Record</p><pre id="feef35b3-a065-4616-ab7e-5391c5f1a816" class="code"><code>// SELECT id, Name FROM Account WHERE Name =&#x27;APEX ESTA LLC&#x27; LIMIT 1
+
+Account singleAccount = [SELECT id, Name FROM Account WHERE Name =&#x27;APEX ESTA LLC&#x27; LIMIT 1];
+
+System.debug(&#x27;Single Account : &#x27;+ singleAccount);
+
+singleAccount.Industry=&#x27;Banking&#x27;;
+
+System.debug(&#x27;Single Account : &#x27;+ singleAccount);
+
+update singleAccount;</code></pre><p id="9b78e124-424b-4bfc-9e18-2382a1491840" class="">
+</p><p id="b4311bfa-9904-4d33-a4ab-ab57b53faf27" class="">
+</p><p id="ed5e771e-ac28-46e6-9d4d-659148ca716d" class="">Make SOQL Query and Add Opportunity to Related Account</p><pre id="7e62902f-7707-4949-a0af-ab7611cc5a3d" class="code"><code>// SELECT id, Name FROM Account WHERE Name =&#x27;APEX ESTA LLC&#x27; LIMIT 1
+
+Account singleAccount = [SELECT id, Name FROM Account WHERE Name =&#x27;APEX ESTA LLC&#x27; LIMIT 1];
+
+singleAccount.Industry=&#x27;Education&#x27;;
+
+update singleAccount;
+
+
+Opportunity singleOpportunity = New Opportunity();
+
+String opName =singleAccount.Name + &#x27; 🔥 &#x27; + &#x27; Webinar APEX&#x27;;
+Date futureDate = date.today()+20;
+
+singleOpportunity.Name=opName;
+singleOpportunity.CloseDate =futureDate;
+singleOpportunity.StageName=&#x27;Prospecting&#x27;;
+singleOpportunity.Amount = 5000;
+singleOpportunity.AccountId=singleAccount.id; // lookup Relation
+
+insert singleOpportunity;
+
+
+// this is not a good way to check opportunity creation. 
+// best way is to do this steps using Try- Catch we will learn this later.
+
+if(String.isBlank(singleOpportunity.id)){
+    System.Debug(&#x27;Opportunity Cannot be Created&#x27;);
+} else {
+      System.Debug(&#x27;Opportunity Created&#x27;);
+}</code></pre><p id="200b2203-8de8-4a45-bbff-d68697f67f6d" class="">
+</p></div></article></body></html>

@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Flow vs Apex</title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Create Account and Contact Together</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -666,13 +666,37 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="2ad89f46-2fbc-4473-a049-9fd62a3dbc4b" class="page sans"><header><h1 class="page-title">Flow vs Apex</h1></header><div class="page-body"><p id="67189752-b627-44d3-8859-524dc9df1282" class="">
-</p><p id="417b5d7c-36b2-4044-97e1-f882633d3c62" class="">
-</p><p id="98b7f69b-df6b-448d-8a1e-df8673880415" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="b5ced1f1-ce37-454c-8559-bc76985f2460" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="0349c972-2ded-4553-9178-0930ee041dd4" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="6e35e2bc-d72b-4040-8c35-f012ce24dd71" class="">
-</p><p id="bea3653a-e23f-4cbb-aa9b-8ee30a1216d0" class=""><strong>Other Github Repos</strong></p><p id="73acb4a0-a073-444e-8c90-7bba461fe56b" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p><p id="8bb920c8-113a-4065-920c-bd871059cb33" class="">
-</p><p id="da0551fb-1622-4d01-9a47-8837f2b380c5" class="">
-</p><figure id="f29e8660-e428-46dc-bc0e-f4fe345cf466" class="link-to-page"><a href="Flow%20vs%20Apex%202ad89f462fbc4473a0499fd62a3dbc4b/Create%20single%20Contact,%20Add%20Contacts%20to%20multi%20Conta%20f29e8660e42846dcbc0ef4fe345cf466.html">Create single Contact, Add Contacts to multi Contact Object and Create records with single DML statement.</a></figure><figure id="b815578b-a2b1-4d1c-a765-b71dc4af6ebe" class="link-to-page"><a href="Flow%20vs%20Apex%202ad89f462fbc4473a0499fd62a3dbc4b/Get%20Contacts%20and%20Update%20b815578ba2b14d1ca765b71dc4af6ebe.html">Get Contacts and Update</a></figure><figure id="497fd717-453e-4cfc-aa38-a32f6a8149a2" class="link-to-page"><a href="Flow%20vs%20Apex%202ad89f462fbc4473a0499fd62a3dbc4b/Create%20Account%20and%20Contact%20Together%20497fd717453e4cfcaa38a32f6a8149a2.html">Create Account and Contact Together</a></figure><figure id="1df5ec02-8c65-43e3-abcf-06ed647255cf" class="link-to-page"><a href="Flow%20vs%20Apex%202ad89f462fbc4473a0499fd62a3dbc4b/Search%20Account%20and%20Add%20this%20Account%20Opportunity%201df5ec028c6543e3abcf06ed647255cf.html">Search Account and Add this Account Opportunity</a></figure><p id="a4b6a3f4-bf35-461c-8e8e-c4eca7834eb1" class="">
-</p><p id="7a68413a-17fb-45db-a9ae-99976e5f0bd3" class="">
-</p><p id="3a6f31aa-cd7a-4805-8679-907b5d5eb3f7" class="">
-</p><p id="0d275cfa-7865-436f-9fd2-5298048f6f9f" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="9804d395-709b-4507-9005-08c30f4b5f94" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="b4c18745-0761-41e8-a397-23799b5311ee" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="c0ddad5a-c765-4aae-96d7-3639a611aed2" class="">
-</p><p id="a9a7487f-eed1-44f3-95cc-98dc94d12b59" class=""><strong>Other Github Repos</strong></p><p id="abf2c242-931a-4bcf-8161-6582f1cbeda6" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p></div></article></body></html>
+</style></head><body><article id="497fd717-453e-4cfc-aa38-a32f6a8149a2" class="page sans"><header><h1 class="page-title">Create Account and Contact Together</h1></header><div class="page-body"><p id="44ee6ad1-3c57-4c43-9f39-be9a047624ad" class="">
+</p><p id="d2e1018e-ccac-4e60-9459-f40d9cb28651" class="">
+</p><pre id="76a1afaa-c485-4bf6-9244-9b9be88cbca0" class="code"><code>// datatype variableName = exp 
+Account singleAcc= New Account();
+
+singleAcc.Name=&#x27;APEX ACC HAS CONTACT LLC&#x27;;
+singleAcc.Phone=&#x27;+11111111&#x27;;
+singleAcc.Website=&#x27;www.ACC1.com&#x27;;
+singleAcc.Rating=&#x27;Hot&#x27;;
+System.debug(&#x27;Account BEFORE INSERT ID: &#x27;+ singleAcc.id);
+
+// DML variable sent to Salesforce DB
+insert singleAcc;
+
+System.debug(&#x27;Account AFTER INSERT  ID: &#x27;+ singleAcc.id);
+
+// contact oluşturma
+Contact singleContact = New Contact();
+singleContact.firstName=&#x27;Alex&#x27;;
+singleContact.lastName=&#x27;Victor&#x27;; // required
+singleContact.AccountId=singleAcc.id;   // Lookup  this field is required account id from account object
+System.debug(&#x27;Contact BEFORE INSERT ID: &#x27;+ singleContact.id);
+
+// DML contact creation request to SALESFORCE
+insert singleContact;
+
+System.debug(&#x27;Contact BEFORE INSERT ID: &#x27;+ singleContact.id);</code></pre><p id="198bc5e3-985e-4f3a-b194-e0f2c95ac239" class="">
+</p><p id="99734293-7b1a-4cc1-bb53-00e1051f4fb2" class="">
+</p><figure id="3758dc41-fcbb-47b8-908e-7f28d4d3e34d" class="image"><a href="Create%20Account%20and%20Contact%20Together%20497fd717453e4cfcaa38a32f6a8149a2/Untitled.png"><img style="width:1744px" src="Create%20Account%20and%20Contact%20Together%20497fd717453e4cfcaa38a32f6a8149a2/Untitled.png"/></a></figure><p id="65fea16c-8e20-4c3f-bc40-079334aa5e8b" class="">
+</p><figure id="d9b32d5c-bed0-494a-bbb0-8e01e1407a08" class="image"><a href="Create%20Account%20and%20Contact%20Together%20497fd717453e4cfcaa38a32f6a8149a2/Untitled%201.png"><img style="width:1801px" src="Create%20Account%20and%20Contact%20Together%20497fd717453e4cfcaa38a32f6a8149a2/Untitled%201.png"/></a></figure><p id="5c91a85f-fa86-4dbf-8ff3-c8090cecd55d" class="">
+</p><figure id="0d73ddc5-4154-4956-988a-18c7bed17ec0" class="image"><a href="Create%20Account%20and%20Contact%20Together%20497fd717453e4cfcaa38a32f6a8149a2/Untitled%202.png"><img style="width:1748px" src="Create%20Account%20and%20Contact%20Together%20497fd717453e4cfcaa38a32f6a8149a2/Untitled%202.png"/></a></figure><p id="35bc8be1-de52-40ae-af0e-cfab4842dbc5" class="">
+</p><figure id="2edf1382-4963-4a1a-82b2-0aff4f13ba97" class="image"><a href="Create%20Account%20and%20Contact%20Together%20497fd717453e4cfcaa38a32f6a8149a2/Untitled%203.png"><img style="width:1753px" src="Create%20Account%20and%20Contact%20Together%20497fd717453e4cfcaa38a32f6a8149a2/Untitled%203.png"/></a></figure><p id="1913df83-9564-4cd6-ac0a-38e33c532858" class="">
+</p><figure id="fe3f353a-0561-4241-8c12-25c14e72725c" class="image"><a href="Create%20Account%20and%20Contact%20Together%20497fd717453e4cfcaa38a32f6a8149a2/Untitled%204.png"><img style="width:1736px" src="Create%20Account%20and%20Contact%20Together%20497fd717453e4cfcaa38a32f6a8149a2/Untitled%204.png"/></a></figure><p id="92a46514-bda8-4563-9b7f-c98951eb05a7" class="">
+</p><figure id="a6892e52-5c52-4874-b0a7-c599d8683785" class="image"><a href="Create%20Account%20and%20Contact%20Together%20497fd717453e4cfcaa38a32f6a8149a2/Untitled%205.png"><img style="width:1790px" src="Create%20Account%20and%20Contact%20Together%20497fd717453e4cfcaa38a32f6a8149a2/Untitled%205.png"/></a></figure></div></article></body></html>
