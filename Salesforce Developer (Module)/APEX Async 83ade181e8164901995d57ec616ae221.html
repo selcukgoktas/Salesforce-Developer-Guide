@@ -1,0 +1,816 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>APEX Async</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="83ade181-e816-4901-995d-57ec616ae221" class="page sans"><header><h1 class="page-title">APEX Async</h1></header><div class="page-body"><p id="4e5f924a-273f-4a63-a432-38df8c9217f2" class="">
+</p><figure id="a7ab8b31-3232-480b-ac29-90327a347ea8" class="link-to-page"><a href="APEX%20Async%2083ade181e8164901995d57ec616ae221/Simple%20Sync%20Apex%20in-Classs%20Notes%20a7ab8b313232480bac2990327a347ea8.html">Simple Sync Apex in-Classs Notes</a></figure><p id="9d9e7753-2d5c-4931-8048-60e7da26d84f" class="">
+</p><figure id="c52f1a40-7951-49e9-895c-320d9d76189e" class="image"><a href="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled.png"><img style="width:918px" src="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled.png"/></a></figure><figure id="42125cfb-16a3-4866-85a1-04032865d8b5" class="image"><a href="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled%201.png"><img style="width:720px" src="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled%201.png"/></a></figure><p id="770cf41d-620c-46f5-9b10-3eb341d31631" class="">
+</p><h1 id="98775683-8fca-47fb-b2ff-b529e81ca2e9" class=""><details open=""><summary>Future</summary></details></h1><div class="indented"><p id="a6041916-6c14-425e-ab86-c1ced1ea29bc" class="">Official Documentation : <a href="https://developer.salesforce.com/docs/atlas.en-us.200.0.apexcode.meta/apexcode/apex_async_overview.htm">https://developer.salesforce.com/docs/atlas.en-us.200.0.apexcode.meta/apexcode/apex_async_overview.htm</a></p><div><ul id="d7b1399b-a191-4ce9-8d3b-4f38a30ed962" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Runs in its own <strong>thread </strong>and <strong>transactions</strong></span></li></ul><ul id="c8b13740-6008-4033-b355-76ddfc61ae43" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Executes when system resources are available. </span></li></ul><ul id="8dd35c55-0a5d-40a3-be49-eaff9964a346" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">It is not a realtime.</span></li></ul><ul id="a0ff22de-4844-4d8c-bcc7-ff72606695c3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Must be <strong>static</strong></span></li></ul><ul id="25fc3045-2659-46a5-827c-aa0125beb47e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Must have <strong>void </strong>return type</span></li></ul><ul id="6b883af7-0e05-4ba8-87f2-fbb240ded469" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Parameters must be <strong>primitive or collection</strong> of primitive datatypes.</span></li></ul><ul id="b72d6ce4-fb17-4c8b-a47e-2d475ab39fef" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Future methods cannot be called from another future method.</span></li></ul><ul id="48147e3a-0270-4ccc-b44b-f4e88afa297d" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Limit to 50 future calls per transaction</span></li></ul><ul id="c7ed8a3b-740c-4296-8b65-1c260672d47e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Can’t trigger future call in a future call</span></li></ul><ul id="63c5190e-f1ab-470c-98b3-ffe6bdf12651" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Use System.isFuture in code to avoid call a future method.</span></li></ul></div><pre id="c1944c1d-ded4-4126-b064-b3d9b363be80" class="code"><code>
+// empty template
+global class myClass {
+
+		@future
+		public static void myFutureMethod(){
+
+
+		}
+
+
+
+}
+</code></pre><pre id="42967927-afe5-43f0-a66f-2b7935a1713f" class="code"><code>//example
+public with sharing class LeadAsync {
+    
+    
+    
+    @future
+    public static void methodName(Set&lt;Id&gt; exRecIds) {
+        
+        List&lt;Lead&gt; multiLead = [SELECT Id, LeadSource FROM Lead WHERE id IN :exRecIds];
+        for (Lead rec : multiLead) {
+            rec.LeadSource = &#x27;Web&#x27;;
+        }
+        
+        update multiLead;
+        
+        
+    }
+}</code></pre><pre id="285e55a9-509c-4d1d-a91a-f063949bd717" class="code"><code>public class LeadBatch implements Database.Batchable&lt;SObject&gt; {
+    
+    public Database.QueryLocator start(Database.BatchableContext BC){
+        return Database.getQueryLocator(&#x27;SELECT id FROM Lead&#x27;);
+    }
+    
+    public void execute(Database.BatchableContext BC, List&lt;Lead&gt; scope){
+        for(Lead s:scope){
+           s.LeadSource=&#x27;Other&#x27;;            
+        }
+        update scope;
+    }
+    
+    public void finish(Database.BatchableContext BC){
+     System.debug(&#x27;Batch Finished&#x27;);   
+    }
+}</code></pre><pre id="0b9a714b-1c0e-49f6-bf44-1648c1e924d1" class="code"><code>LeadAsync LA = New LeadAsync();
+
+Map&lt;Id, Lead&gt; multiLead = New Map&lt;Id,Lead&gt;([SELECT id, Name FROM Lead]);
+
+LA.updateRec(multiLead.keySet());</code></pre><figure id="c3b05f3b-f9ca-45d0-8285-07584348880c" class="image"><a href="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled%202.png"><img style="width:1909px" src="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled%202.png"/></a></figure></div><h1 id="4c34f3ac-48d5-44a4-a5f8-fe356c1c55da" class=""><details open=""><summary>Interfaces</summary></details></h1><div class="indented"><p id="e3d93ac3-8dc5-4dae-94bb-ac2ef6b21dd0" class=""><a href="https://developer.salesforce.com/docs/atlas.en-us.238.0.apexref.meta/apexref/apex_interface_System_Callable.htm?q=Interface">https://developer.salesforce.com/docs/atlas.en-us.238.0.apexref.meta/apexref/apex_interface_System_Callable.htm?q=Interface</a></p></div><h1 id="6b5169e9-e06b-47cb-a781-0695691ae90e" class=""><details open=""><summary>Batch</summary></details></h1><div class="indented"><ul id="f0e01b4c-8714-4b43-bbe0-d1daf4f37e39" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>Millions </strong>of Records</span></li></ul><ul id="8d539dd8-ebe8-4156-9500-668015180018" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">It <strong>divides </strong>your records into smaller batches and It process them separately. </span></li></ul><ul id="50ec5785-2a2c-4653-a6f5-ea81249cfe5e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><strong>long </strong>running process</span></li></ul><ul id="f9e81b05-3723-4c63-9be4-6cf17ed72390" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">can be <strong>scheduled </strong><a href="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_scheduler.htm">https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_scheduler.htm</a></span></li></ul><ul id="106668cd-7759-41ce-a146-345c1a4216f3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Implement <strong>database.batchable interface</strong></span></li></ul><ul id="4e76032f-5608-45c4-8227-2c5be407645f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">operates over small batches chunks of records</span></li></ul><ul id="e32aef3c-3e1e-419a-84bb-32a2bc5ce695" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Start / Execute / Finish Methods</span></li></ul><p id="6ec8f0a5-89de-4344-9a85-142497f45c8a" class="">
+</p><p id="0ca7f8ce-b84b-45db-bab7-c1c2a3e4e6b1" class="">
+</p><ul id="aadb1487-9b70-4550-8c72-4004bad84306" class="toggle"><li><details open=""><summary><strong>Start</strong></summary><ul id="a688801e-8af0-419c-8d2b-e81840563cd2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Executes only once</span></li></ul><ul id="92d6b5ad-525c-4273-bdc6-f7eca8ed1c65" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Return batch scope or records</span></li></ul><ul id="80aaf5a6-9f26-4350-82f5-c2ce46fff83a" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">can return up to 50 million records</span></li></ul></details></li></ul><ul id="5eeb3cf0-7576-4c7b-82a0-2d9f2c9c9bdb" class="toggle"><li><details open=""><summary><strong>Execute</strong></summary><ul id="da6f1b15-8fe7-4aab-a957-751a21130cfa" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Executes for each batch / chunk of records</span></li></ul><ul id="30dcfe46-3783-40cf-884f-e85d69f06394" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Batch size 2000 ( 0-2000 Default value is 200 )</span></li></ul><ul id="cfaf0447-6200-4b5e-bbc7-c0859582d20d" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">must have <strong>void </strong>return type</span></li></ul><ul id="2ce3f527-95a6-463b-b8a1-6f9138c84607" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Each execution will get <strong>new set of governor limits</strong></span></li></ul><ul id="0cae7108-7b1f-4692-b5df-810861265e5f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul><p id="884cc6f1-2bb0-41cc-b526-d351d99a1fb0" class="">
+</p></details></li></ul><ul id="5554091a-5446-49f4-9398-b7859f52a5a2" class="toggle"><li><details open=""><summary><strong>Finish</strong></summary><ul id="9a6bae6d-fc57-4c6d-acbf-58c43a7910d7" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Execute only once</span></li></ul><ul id="b5927958-3db8-4f67-91c9-14d997213d63" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Called after all batches are processed</span></li></ul><ul id="dc6004b2-e83e-42f0-bba2-aa8d8e88a924" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">can be used for post processing</span></li></ul><ul id="837900c7-2e42-4f13-bbb8-49f74c7d0465" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul></details></li></ul><pre id="351c814b-0d95-4d2e-94b8-8a6aff8ecf4f" class="code"><code>/**
+ * @description       : 
+ * @author            : Selçuk GÖKTAŞ
+ * @group             : 
+ * @last modified on  : 06-15-2022
+ * @last modified by  : Selçuk GÖKTAŞ
+**/
+public class LeadBatch implements Database.Batchable&lt;SObject&gt; { 
+
+// Start
+public Database.QueryLocator start(Database.BatchableContext BC){
+   return Database.getQueryLocator(&#x27;SELECT Id FROM Lead&#x27;);
+   }
+
+ // execute
+public void execute(Database.BatchableContext BC, List&lt;Lead&gt; scope){
+   for(Lead s:scope){
+   // batch actions
+   s.LeadSource=&#x27;Web&#x27;;
+	 System.debug(s.id + &#x27;Ids record is processed now...&#x27;);
+   }
+}
+
+// finish
+public void finish(Database.BatchableContext BC){
+   System.debug(&#x27;Batch Finished&#x27;);
+// You can call another Batch Class also when this batch is finished other will start.
+}
+
+}</code></pre><pre id="806947a3-0879-4430-bdce-cd0eba6b5331" class="code"><code>
+LeadBatch LB= new LeadBatch();
+
+// batchsize 0-2000 default 200 
+Database.executeBatch(LB,5); // 5 is batch size. Everytime this size executed.
+
+// Schedule Batch ( 30 minutes from now )
+String CronID=System.scheduleBatch(LB,&#x27;Scheduled Lead Batch&#x27;,30);
+</code></pre><figure id="c8424c29-20ad-4023-9df8-892ca8144c7e" class="image"><a href="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled%203.png"><img style="width:2483px" src="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled%203.png"/></a></figure></div><p id="de964c92-ab20-4c92-82b8-30294130083a" class="">
+</p><p id="0545c753-c943-4115-a6f2-994edabfd5c4" class="">
+</p><p id="bdd07c58-1ff0-4844-97ba-f6bfa2dc716a" class="">
+</p><h1 id="44b68f9e-eb64-4777-bd55-64797a18464f" class=""><details open=""><summary>Queueable</summary></details></h1><div class="indented"><ul id="c549ad7c-d906-4d44-ae8f-915a7e5738fa" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Advanced version of Future Async Apex method.</span></li></ul><ul id="1226c661-38ae-41d0-bada-d7890dd8d73e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">You can directly pass Sobject which future cannot do this.</span></li></ul><ul id="598952be-ac85-49fa-afa4-7429159c52d2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">It allows you to monitor your apex jobs.</span></li></ul><ul id="93d34a2d-a8d1-446d-b0d7-08e8b02f2603" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Unlike Future it allows you to chain your jobs.</span></li></ul><ul id="80f9ad5b-f04c-4579-b123-0ea2118b6cd0" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Requires a <strong>separate class</strong></span></li></ul><ul id="4af40b14-22a3-4644-9ad0-59bae2dbcb59" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">50 Jobs in a synchronous transaction but only 1 while in asynchronous transaction</span></li></ul><ul id="afa49c10-6edf-46e7-bcb9-6117ae11b6a1" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Can <strong>chain </strong>queueables together</span></li></ul><ul id="deb7c953-be99-42f2-b512-dce0447cbc6a" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">No limit on how many can be chained together</span></li></ul><ul id="6d927a43-5192-4e65-8a95-1c57f48ca396" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Invoke one by using system.enqueueJob()</span></li></ul><pre id="3157a100-f764-45c7-a3a6-5d72b4ee350b" class="code"><code>public class LeadQueueable implements Queueable {
+
+    public void execute(QueueableContext context){
+          List&lt;Lead&gt; multiLead = [SELECT Id, LeadSource FROM Lead];
+        
+        for (Lead single:multiLead){
+            single.LeadSource=&#x27;Web&#x27;;
+        }
+        update multiLead;
+    }
+}</code></pre><pre id="1f73f0e1-c603-4519-93b0-8161344244fe" class="code"><code>LeadQueueable LQ = New LeadQueueable();
+
+
+ID JobId=System.enqueueJob(LQ);</code></pre><figure id="b38fff80-ccdf-4124-a9de-c8cdb2a9da64" class="image"><a href="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled%204.png"><img style="width:2140px" src="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled%204.png"/></a></figure></div><figure id="19c64fc4-51d2-4126-8402-4136bf50dda5" class="image"><a href="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled%205.png"><img style="width:2491px" src="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled%205.png"/></a></figure><p id="259629fd-6550-4660-81bc-aad48c4a94f3" class="">
+</p><h1 id="96d6170c-ec5d-4aa6-a819-e2e4a82ea026" class=""><details open=""><summary>Scheduled</summary></details></h1><div class="indented"><ul id="298672e9-0a70-4f7c-8b56-d97d3921fd25" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Requires a separate class</span></li></ul><ul id="8bb1b50b-83b7-4a94-824f-1ed35b4dbe54" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Schedule to a specific time</span></li></ul><ul id="d27e1ed1-36af-4039-9876-df35e642b2dc" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">System.Schedule </span></li></ul><ul id="66992cd6-ae14-4050-8c0a-7eab3996cf2c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Limit of 100 scheduled jobs</span></li></ul><ul id="60f9ddfb-bc60-4a89-a847-cbd6cb8c228d" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">No callouts from scheduled apex call future or queueble methods.</span></li></ul><h3 id="566d4685-77b6-4046-857a-1b15a0dddfb5" class=""><details open=""><summary>Cron Expression</summary></details></h3><div class="indented"><pre id="b21f7e3a-da88-4250-b21e-2667c2570072" class="code"><code>String CronEx = &#x27;00 30 8 1 * ?&#x27;;
+// 8:30 of every monnth 1st.
+
+String CronEx = &#x27;00 00 13 * * ?&#x27;;
+// Every day 1 PM
+
+String CronEx = &#x27;00 00 10 * MON-FRI&#x27;;
+// From Monday to Friday 10 AM
+
+
+</code></pre><table id="2b901e7b-9622-4f04-bef6-53e687be44d3" class="simple-table"><thead class="simple-table-header"><tr id="9e4cc32e-041e-4fba-b6e8-fd354a24a592"><th id="{poo" class="simple-table-header-color simple-table-header">Name</th><th id="aIM&gt;" class="simple-table-header-color simple-table-header">Values</th><th id="|_bZ" class="simple-table-header-color simple-table-header">Special Chars</th></tr></thead><tbody><tr id="e86ab7d0-c050-4cd8-9b52-d3fc2319dfcc"><th id="{poo" class="simple-table-header-color simple-table-header">Seconds</th><td id="aIM&gt;" class="">0-59</td><td id="|_bZ" class=""></td></tr><tr id="b85c8b2c-4a55-47fd-90a6-4c667fe58ab9"><th id="{poo" class="simple-table-header-color simple-table-header">Minutes</th><td id="aIM&gt;" class="">0-59</td><td id="|_bZ" class=""></td></tr><tr id="c064a2c8-c29f-4acf-9061-febee7ccedca"><th id="{poo" class="simple-table-header-color simple-table-header">Hours</th><td id="aIM&gt;" class="">0-23</td><td id="|_bZ" class=""></td></tr><tr id="b3ff3373-af2e-4a11-8d64-913a057235ad"><th id="{poo" class="simple-table-header-color simple-table-header">Day of Month</th><td id="aIM&gt;" class="">1-31</td><td id="|_bZ" class="">, - * ? / L W</td></tr><tr id="56f528de-0aea-44dd-a940-1201c864bd12"><th id="{poo" class="simple-table-header-color simple-table-header">Month</th><td id="aIM&gt;" class="">1-12 (JAN - DEC )</td><td id="|_bZ" class="">, - * /</td></tr><tr id="82a0f0ca-a81c-48fb-a82d-740c6ea21682"><th id="{poo" class="simple-table-header-color simple-table-header">Day of Week</th><td id="aIM&gt;" class="">1-7 ( SUN - SAT )</td><td id="|_bZ" class="">, - * ? / L #</td></tr><tr id="55a915c0-70db-4529-9233-c94dee4ea1fb"><th id="{poo" class="simple-table-header-color simple-table-header">Optional Year</th><td id="aIM&gt;" class="">Null or 1970-2099</td><td id="|_bZ" class="">, - * /</td></tr></tbody></table></div><h3 id="de460e2d-736e-4839-aec4-194d038c71b0" class=""><details open=""><summary>Special Chars</summary></details></h3><div class="indented"><ul id="90976c8f-3a6d-4497-942f-c40d1d0ac199" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"> , Multiple Values</span></li></ul><ul id="a3a87034-b993-4564-bc39-cf9e1991a57a" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"> - Range of Values</span></li></ul><ul id="36228a2a-4b40-48d5-82c2-ab9bbd1c69c4" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"> * All Possible Values</span></li></ul><ul id="e6f91ec1-907e-4de6-bfcf-9a44bf7f735a" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"> ? Do not specify any value</span></li></ul><ul id="59e87f0b-77f4-4d8b-aafb-263e5b1e907b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"> / Skip Exam : */3 every 3 hour or 2/3 : 2,5,8,11</span></li></ul><ul id="56235a91-f1c5-4611-bcac-e6d1f70ccc68" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">L Last possible value</span></li></ul><ul id="280b33a3-6759-47da-b89e-006e2ebef7df" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">W Closest weekday</span></li></ul></div></div><p id="ee908b2d-298a-4627-ac5a-ced0cd382a8e" class="">
+</p><p id="bbf29754-33ef-4618-b6fb-722f2b7275ee" class="">
+</p><figure id="0102d7e0-7d6b-4db3-8033-2e468458098b" class="image"><a href="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled%206.png"><img style="width:2486px" src="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled%206.png"/></a></figure><p id="599ce653-5c0d-405d-bfca-2d310fe0ff63" class="">
+</p><pre id="ec8c1a87-1224-421b-9f9c-d054b4261572" class="code"><code>public class LeadSchedulable implements Schedulable {
+
+    public void execute(SchedulableContext sc){
+          List&lt;Lead&gt; multiLead = [SELECT Id, LeadSource FROM Lead];
+        
+        for (Lead single:multiLead){
+            single.LeadSource=&#x27;Web&#x27;;
+        }
+        update multiLead;
+    }
+}</code></pre><pre id="24fd25df-5f5c-486a-9503-1db93ab454e9" class="code"><code>LeadSchedulable LS = New LeadSchedulable();
+
+String CronStr=&#x27;00 00 1 ? * SAT&#x27;;
+ID JobId=System.schedule(&#x27;00 00 1 ? * SAT My Cron Text&#x27;, CronStr, LS);
+
+
+// Check Job Status
+List&lt;Sobject&gt; CronJobs =[SELECT Id, TimesTriggered, CronJobDetailId, NextFireTime, PreviousFireTime FROM CronTrigger WHERE Id=:JobId];
+
+System.debug(&#x27;Jobs : &#x27;+ CronJobs);</code></pre><p id="f2376ca2-f509-46ea-ab99-16ce22acaa4a" class="">
+</p><figure id="b810826d-4a43-48e7-bad6-210bcfee8611" class="image"><a href="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled%207.png"><img style="width:2482px" src="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled%207.png"/></a></figure><p id="b2459045-b1af-4489-ad9e-75bda675a662" class="">
+</p><figure id="4cf37a41-7958-4b7c-88d3-8ec1e9d0fc33" class="image"><a href="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled%208.png"><img style="width:2481px" src="APEX%20Async%2083ade181e8164901995d57ec616ae221/Untitled%208.png"/></a></figure><p id="916b6a93-baf4-47fe-9aeb-53c74ac0e572" class="">
+</p><p id="f95fa0f6-74c9-4a05-b881-818ddc8bcd1e" class="">
+</p><p id="0a980d4c-0225-4dc5-90bc-b26af521ae77" class=""><strong>This is published by Selçuk GÖKTAŞ</strong></p><p id="e89736c6-b75c-41e5-8893-bbbaf0f9b887" class=""><strong>Contact with Linkedin for Questions.</strong></p><p id="48af7434-0b92-48e9-b25f-87b764a9c80f" class=""><a href="https://www.linkedin.com/in/selcukgoktas/">https://www.linkedin.com/in/selcukgoktas/</a></p><p id="0666f854-ce50-485b-a176-667fb63e57e6" class="">
+</p><p id="27eabd53-3f6f-4e8e-b7d3-6a7331f52ee3" class=""><strong>Other Github Repos</strong></p><p id="68e2954f-c1ef-472c-9d40-39af1d85cc56" class=""><a href="https://github.com/selcukgoktas">https://github.com/selcukgoktas</a></p></div></article></body></html>
