@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>VSCODE </title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Custom controller with HTML</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -666,145 +666,76 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="8b9224ba-5e10-4b5f-af31-a896b4455fa6" class="page sans"><header><h1 class="page-title">VSCODE </h1></header><div class="page-body"><p id="85dc19c4-2e07-4ed7-82a2-0a3f7b9e16d5" class="">
-</p><p id="eb9d1e44-2248-485e-92d4-05c4ad8d4113" class="">
-</p><h3 id="8b42df3e-e398-48fd-b5c7-1386570df211" class=""><details open=""><summary>VSCODE Extentions for Salesforce Development</summary></details></h3><div class="indented"><p id="bb3e8727-841f-4145-a366-5d1c945cb7cc" class=""><a href="https://www.youtube.com/watch?v=kp6B54MVhP8">https://www.youtube.com/watch?v=kp6B54MVhP8</a></p></div><h2 id="7461abc4-be1e-4e76-bc92-1ff084e56e8c" class=""><details open=""><summary>User Snippet</summary></details></h2><div class="indented"><pre id="2e0ccec3-6a95-46fa-a525-37d9ae559122" class="code"><code>{
-	// Place your snippets for apex here. Each snippet is defined under a snippet name and has a prefix, body and 
-	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
-	// same ids are connected.
-	// Example:
-	// &quot;Print to console&quot;: {
-	// 	&quot;prefix&quot;: &quot;log&quot;,
-	// 	&quot;body&quot;: [
-	// 		&quot;console.log(&#x27;$1&#x27;);&quot;,
-	// 		&quot;$2&quot;
-	// 	],
-	// 	&quot;description&quot;: &quot;Log output to console&quot;
-	// }
+</style></head><body><article id="b7d28376-1d51-422d-93c7-a0272a59b0fc" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">♦️</span></div><h1 class="page-title">Custom controller with HTML</h1></header><div class="page-body"><p id="4afc88be-c10d-4c07-bafc-105ebd2a59bf" class="">
+</p><p id="ef1012c3-dbe2-4017-9999-f6c956735146" class="">Vsforce Page</p><pre id="027d9c75-e2aa-4aee-aa7b-ab3892e14948" class="code"><code>&lt;apex:page controller=&quot;MyController&quot;&gt;
 
-&quot;multiObject&quot;:{
-	&quot;prefix&quot;:&quot;multi&quot;,
-	&quot;body&quot;: [
-		&quot;List&lt;${1:sObject}&gt; multi${1:sObject} = New List&lt;${1:sObject}&gt;();&quot;
-	],
-	&quot;description&quot;: &quot;Add multi List of aObject&quot;
-},
+&lt;img src=&quot;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6jaEaIi2S8hzMpAgf34DhWTBHuXwGT9infw&amp;usqp=CAU&quot; width=&quot;100px&quot; height=&quot;70px&quot;/&gt;
+&lt;hr /&gt;
+  Contact ID : {!contact.id}
+ &lt;br /&gt;
+  {!msg}
+  
+  &lt;apex:form &gt;
+      &lt;apex:pageBlock &gt;
+          &lt;apex:pageblockButtons &gt;
+              &lt;apex:commandButton value=&quot;Save&quot; action=&quot;{!save}&quot;/&gt;
+          
+          
+          &lt;/apex:pageblockButtons&gt;
+          &lt;apex:pageBlockSection &gt;
+              &lt;apex:inputfield value=&quot;{!contact.firstName}&quot;/&gt;
+              &lt;apex:inputfield value=&quot;{!contact.lastName}&quot;/&gt;
+              &lt;apex:inputfield value=&quot;{!contact.account.name}&quot; required=&quot;false&quot;&gt; 
+                &lt;p&gt; If you keep this field blank, This contact will be automatically B2C Customer &lt;/p&gt; &lt;/apex:inputfield&gt;
+                
+                &lt;apex:inputfield value=&quot;{!contact.phone}&quot;/&gt;         
+          
+          &lt;/apex:pageBlockSection&gt;
+          
+          &lt;apex:pageblockSection &gt;
+          
+          
+          
+          &lt;/apex:pageblockSection&gt;
+      
+      &lt;/apex:pageBlock&gt;
+  
+  &lt;/apex:form&gt;
+  
+ 
+  
+&lt;/apex:page&gt;</code></pre><p id="546ceb31-8957-46ba-b459-ff8d86474023" class="">
+</p><p id="2b0685d3-a666-424b-87fe-3eb830cf8ff2" class="">Apex Controller ( Custom )</p><pre id="4679d3fc-138d-449f-84cc-75f2cf5774cf" class="code"><code>public class MyController {
 
-&quot;multiSOQL&quot;:{
-	&quot;prefix&quot;:&quot;multiSOQL&quot;,
-	&quot;body&quot;: [
-		&quot;List&lt;${1:sObject}&gt; multi${1:sObject} = [SELECT Id FROM ${1:sObject}];&quot;
-	],
-	&quot;description&quot;: &quot;Add multi List of aObject from SOQL&quot;
-},
+    private final Contact contact;
+    public String msg{get;set;}
 
-&quot;singleObject&quot;:{
-	&quot;prefix&quot;:&quot;single&quot;,
-	&quot;body&quot;: [
-		&quot;${1:sObject} single${1:sObject} = New ${1:sObject}();&quot;
-	],
-	&quot;description&quot;: &quot;Add Single aObject&quot;
-},
+    public MyController() {
+        Id contactId=ApexPages.currentPage().getParameters().get(&#x27;id&#x27;);
+        msg=ApexPages.currentPage().getParameters().get(&#x27;msg&#x27;);
+        
+        contact=(contactId==null)?New Contact():[SELECT Id, firstName, lastName,accountid, Account.Name,phone FROM Contact
+                   WHERE Id = :contactId LIMIT 1];
+         
+         
+        
+        
+         
+                  
+    }
 
-&quot;singleSOQL&quot;:{
-	&quot;prefix&quot;:&quot;singleSOQL&quot;,
-	&quot;body&quot;: [
-		&quot;${1:sObject} single${1:sObject} = [SELECT Id,Name FROM ${1:sObject} WHERE Name =&#x27;${2:Filter}&#x27; LIMIT 1];&quot;
-	],
-	&quot;description&quot;: &quot;Return Single Record&quot;
-},
+    public Contact getContact() {
+    if (String.isBlank(contact.accountid)){
+            contact.accountid=&#x27;0018c00002Mx13qAAB&#x27;;
+            
+        }
+        return contact;
+    }
 
-
-&quot;Create Account&quot;:{
-	&quot;prefix&quot;:&quot;CreateAccount&quot;,
-	&quot;body&quot;: [
-		&quot;Account ${1:singleAccount} = New Account();&quot;,
-		&quot;${1:singleAccount}.Name=${2:nameVar};&quot;,
-		&quot;${1:singleAccount}.Phone=${3:PhoneVar};&quot;,
-		
-
-	],
-	&quot;description&quot;: &quot;CreateAccount with mandatory field + Phone&quot;
-},
-
-&quot;Create Contact&quot;:{
-	&quot;prefix&quot;:&quot;CreateContact&quot;,
-	&quot;body&quot;: [
-		&quot;Contact ${1:singleContact} = New Contact();&quot;,
-		&quot;${1:singleContact}.firstName=${2:firstVar};&quot;,
-		&quot;${1:singleContact}.lastName=${3:LastVar};&quot;,
-		&quot;${1:singleContact}.AccountId=${4:retAccountId};&quot;,
-		&quot;${1:singleContact}.Email=${5:Email};&quot;,
-		&quot;${1:singleContact}.Phone=${6:Phone};&quot;,
-		&quot;${1:singleContact}.Title=${7:Title};&quot;,
-
-
-	],
-	&quot;description&quot;: &quot;CreateAccount with mandatory field + Additional fields&quot;
-},
-
-
-&quot;Create Opportunity&quot;:{
-	&quot;prefix&quot;:&quot;CreateOpportunity&quot;,
-	&quot;body&quot;: [
-		&quot;Opportunity ${1:singleOpportunity} = New Opportunity();&quot;,
-		&quot;${1:singleOpportunity}.Name=${2:nameVar};&quot;,
-		&quot;${1:singleOpportunity}.StageName=${3|&#x27;Prospecting&#x27;,&#x27;Qualification&#x27;,&#x27;Needs Analysis&#x27;,&#x27;Id. Decision Makers&#x27;,&#x27;Perception Analysis&#x27;,&#x27;Proposal/Price Quote&#x27;,&#x27;Negotiation/Review&#x27;,&#x27;Closed Won&#x27;,&#x27;Closed Lost&#x27;,&#x27;Other&#x27;|};&quot;,
-		&quot;${1:singleOpportunity}.AccountId=${4:retAccountId};&quot;,
-		&quot;${1:singleOpportunity}.CloseDate=DATE.TODAY()+${5:15};&quot;,
-		&quot;${1:singleOpportunity}.Amount=${6:Amount};&quot;,
-		
-
-
-	],
-	&quot;description&quot;: &quot;Create Opportunity with mandatory field + Additional fields&quot;
-},
-
-
-
-&quot;Create Lead&quot;:{
-	&quot;prefix&quot;:&quot;CreateLead&quot;,
-	&quot;body&quot;: [
-		&quot;Lead ${1:singleLead} = New Lead();&quot;,
-		&quot;${1:singleLead}.Company=${2:CompanyVar};&quot;,
-		&quot;${1:singleLead}.Status=${3|&#x27;Contacted&#x27;,&#x27;Open&#x27;,&#x27;Qualified&#x27;,&#x27;Unqualified&#x27;,&#x27;Open - Not Contacted&#x27;,&#x27;Working - Contacted&#x27;,&#x27;Closed - Converted&#x27;,&#x27;Closed - Not Converted&#x27;,&#x27;Other&#x27;|};&quot;,
-		&quot;${1:singleLead}.firstName=${4:firstName};&quot;,
-		&quot;${1:singleLead}.lastName=${5:lastName};&quot;,
-		&quot;${1:singleLead}.Amount=${6:Amount};&quot;,
-		
-
-
-	],
-	&quot;description&quot;: &quot;Create Lead with mandatory field + Additional fields&quot;
-},
-
-
-
-&quot;Create Case&quot;:{
-	&quot;prefix&quot;:&quot;CreateCase&quot;,
-	&quot;body&quot;: [
-		&quot;Case ${1:singleCase} = New Case();&quot;,
-		&quot;${1:singleCase}.Status=${2|&#x27;New&#x27;,&#x27;Working&#x27;,&#x27;Escalated&#x27;,&#x27;Closed&#x27;|};&quot;,
-		&quot;${1:singleCase}.Priority=${3|&#x27;High&#x27;,&#x27;Medium&#x27;,&#x27;Low&#x27;|};&quot;,
-		&quot;${1:singleCase}.Origin=${4|&#x27;Phone&#x27;,&#x27;Email&#x27;,&#x27;Web&#x27;|};&quot;,
-		&quot;${1:singleCase}.ContactId=${5:retContactId};&quot;,
-		&quot;${1:singleCase}.AccountId=${6:retAccountId};&quot;,
-		&quot;${1:singleCase}.Subject=&#x27;${7:Subject}&#x27;;&quot;,
-		&quot;${1:singleCase}.Description=&#x27;${8:Description}&#x27;;&quot;,
-		
-	
-
-
-	],
-	&quot;description&quot;: &quot;Create Case with mandatory field + Additional fields&quot;
-},
-
-
-
-
-
-
-
-}</code></pre></div><p id="e396f2c1-42cc-4f55-badb-cb22ddfc0340" class="">
-</p></div></article></body></html>
+    public PageReference save() {
+        
+        update contact;
+        return null;
+    }
+}</code></pre><p id="9cdfa57a-e060-4d84-9302-c44035bc7a72" class="">
+</p><figure id="54f43dc5-2194-47be-b4b2-f3be558bea14" class="image"><a href="Custom%20controller%20with%20HTML%20b7d283761d51422d93c7a0272a59b0fc/Untitled.png"><img style="width:1751px" src="Custom%20controller%20with%20HTML%20b7d283761d51422d93c7a0272a59b0fc/Untitled.png"/></a></figure></div></article></body></html>

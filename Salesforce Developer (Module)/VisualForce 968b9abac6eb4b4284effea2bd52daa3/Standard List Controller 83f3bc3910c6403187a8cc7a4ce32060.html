@@ -1,4 +1,4 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>VSCODE </title><style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Standard List Controller</title><style>
 /* cspell:disable-file */
 /* webkit printing magic: print all background colors */
 html {
@@ -666,145 +666,168 @@ blockquote {
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 	
-</style></head><body><article id="8b9224ba-5e10-4b5f-af31-a896b4455fa6" class="page sans"><header><h1 class="page-title">VSCODE </h1></header><div class="page-body"><p id="85dc19c4-2e07-4ed7-82a2-0a3f7b9e16d5" class="">
-</p><p id="eb9d1e44-2248-485e-92d4-05c4ad8d4113" class="">
-</p><h3 id="8b42df3e-e398-48fd-b5c7-1386570df211" class=""><details open=""><summary>VSCODE Extentions for Salesforce Development</summary></details></h3><div class="indented"><p id="bb3e8727-841f-4145-a366-5d1c945cb7cc" class=""><a href="https://www.youtube.com/watch?v=kp6B54MVhP8">https://www.youtube.com/watch?v=kp6B54MVhP8</a></p></div><h2 id="7461abc4-be1e-4e76-bc92-1ff084e56e8c" class=""><details open=""><summary>User Snippet</summary></details></h2><div class="indented"><pre id="2e0ccec3-6a95-46fa-a525-37d9ae559122" class="code"><code>{
-	// Place your snippets for apex here. Each snippet is defined under a snippet name and has a prefix, body and 
-	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
-	// same ids are connected.
-	// Example:
-	// &quot;Print to console&quot;: {
-	// 	&quot;prefix&quot;: &quot;log&quot;,
-	// 	&quot;body&quot;: [
-	// 		&quot;console.log(&#x27;$1&#x27;);&quot;,
-	// 		&quot;$2&quot;
-	// 	],
-	// 	&quot;description&quot;: &quot;Log output to console&quot;
-	// }
+</style></head><body><article id="83f3bc39-10c6-4031-87a8-cc7a4ce32060" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🌌</span></div><h1 class="page-title">Standard List Controller</h1></header><div class="page-body"><p id="44a3c395-5ad1-49a2-8576-5a448b565398" class="">
+</p><p id="405c15d0-197b-4c50-a4ac-af8a041d36d8" class="">
+</p><pre id="0e4452dd-8014-4b0b-b14c-08ac2811e0ef" class="code"><code>&lt;apex:page standardController=&quot;Account&quot; recordSetVar=&quot;multiAcc&quot;&gt;
 
-&quot;multiObject&quot;:{
-	&quot;prefix&quot;:&quot;multi&quot;,
-	&quot;body&quot;: [
-		&quot;List&lt;${1:sObject}&gt; multi${1:sObject} = New List&lt;${1:sObject}&gt;();&quot;
-	],
-	&quot;description&quot;: &quot;Add multi List of aObject&quot;
-},
+&lt;apex:form &gt;
+    
+    &lt;apex:selectList value=&quot;{!filterid}&quot; size=&quot;1&quot;&gt;
+    
+        &lt;apex:selectOptions value=&quot;{!listviewoptions}&quot;&gt;
+        
+        &lt;/apex:selectOptions&gt;
+        
+        
+       
+    &lt;/apex:selectList&gt;
+    
+    &lt;apex:commandButton value=&quot;Filter&quot; /&gt; &lt;!-- action=&quot;{!list}&quot;  --&gt;
 
-&quot;multiSOQL&quot;:{
-	&quot;prefix&quot;:&quot;multiSOQL&quot;,
-	&quot;body&quot;: [
-		&quot;List&lt;${1:sObject}&gt; multi${1:sObject} = [SELECT Id FROM ${1:sObject}];&quot;
-	],
-	&quot;description&quot;: &quot;Add multi List of aObject from SOQL&quot;
-},
+ 
+&lt;/apex:form&gt;
 
-&quot;singleObject&quot;:{
-	&quot;prefix&quot;:&quot;single&quot;,
-	&quot;body&quot;: [
-		&quot;${1:sObject} single${1:sObject} = New ${1:sObject}();&quot;
-	],
-	&quot;description&quot;: &quot;Add Single aObject&quot;
-},
-
-&quot;singleSOQL&quot;:{
-	&quot;prefix&quot;:&quot;singleSOQL&quot;,
-	&quot;body&quot;: [
-		&quot;${1:sObject} single${1:sObject} = [SELECT Id,Name FROM ${1:sObject} WHERE Name =&#x27;${2:Filter}&#x27; LIMIT 1];&quot;
-	],
-	&quot;description&quot;: &quot;Return Single Record&quot;
-},
+       
+         &lt;apex:pageblock &gt;
+                &lt;apex:pageblockTable value=&quot;{!multiAcc}&quot; var=&quot;loopAcc&quot;&gt;
+                
+                    &lt;apex:column value=&quot;{!loopAcc.Name}&quot;/&gt;
+                    &lt;apex:column value=&quot;{!loopAcc.Phone}&quot;/&gt;
+                    &lt;apex:column value=&quot;{!loopAcc.WebSite}&quot;/&gt;
+                    &lt;apex:column value=&quot;{!loopAcc.AnnualRevenue}&quot;/&gt;
+                
+                
+                
+                &lt;/apex:pageblockTable&gt;
+            
+            
+            &lt;/apex:pageblock&gt;
+        
+        
 
 
-&quot;Create Account&quot;:{
-	&quot;prefix&quot;:&quot;CreateAccount&quot;,
-	&quot;body&quot;: [
-		&quot;Account ${1:singleAccount} = New Account();&quot;,
-		&quot;${1:singleAccount}.Name=${2:nameVar};&quot;,
-		&quot;${1:singleAccount}.Phone=${3:PhoneVar};&quot;,
-		
+ 
+   
+ 
+&lt;/apex:page&gt;</code></pre><p id="458a96a1-6433-4097-808c-882014a581a6" class="">
+</p><p id="7490145f-4570-4357-a25c-02f92496c33f" class="">
+</p><figure id="a674e05a-37cc-4779-9abc-8329652a811e" class="image"><a href="Standard%20List%20Controller%2083f3bc3910c6403187a8cc7a4ce32060/Untitled.png"><img style="width:1746px" src="Standard%20List%20Controller%2083f3bc3910c6403187a8cc7a4ce32060/Untitled.png"/></a></figure><p id="c749cf8b-07db-4881-8ed6-28b4eb4d8f5e" class="">
+</p><p id="395fdcc0-16e4-4f72-9d74-ee13da319153" class="">
+</p><h3 id="e68f3017-9d8d-460f-b325-73fed0af34a6" class=""><details open=""><summary>Standart List Controllers</summary></details></h3><div class="indented"><ul id="86fe1ef4-58ce-44ce-8341-c0947324a95a" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">save</span></li></ul><ul id="0adc9afd-560e-45d7-a7ce-2c1ee8a251a9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">quicksave</span></li></ul><ul id="26666955-d72f-489e-830c-1cb5256b9eae" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">list</span></li></ul><ul id="264514c6-0cd4-4495-9073-09cb59a4be20" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">cancel</span></li></ul><ul id="e68c7cdf-a16f-4344-9799-3b995cc7e875" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">first</span></li></ul><ul id="8a2d5ba6-9f23-4483-b2ae-7e930a38cb91" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">last</span></li></ul><ul id="0022ca13-8ccf-44ba-b09a-defe67f72637" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">next</span></li></ul><ul id="bdcd1343-c233-43c1-90d4-23486dc46cf1" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">previous</span></li></ul><ul id="20a8abaf-3f32-4da3-a069-33822c278f30" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"></span></li></ul></div><p id="0cc59a21-d936-48a7-8aab-1531d1442695" class="">
+</p><p id="9b26eb90-8c59-428b-801f-dfcb40fdd313" class="">
+</p><p id="b09a2b39-d435-4dc8-a1a6-2b1f5cc59686" class="">
+</p><pre id="1ebdf3b5-93ac-4b3e-a7f0-073a9c3a7912" class="code"><code>&lt;apex:page standardController=&quot;Account&quot; recordSetVar=&quot;multiAcc&quot;&gt;
 
-	],
-	&quot;description&quot;: &quot;CreateAccount with mandatory field + Phone&quot;
-},
+&lt;apex:form &gt;
+    
+    &lt;apex:selectList value=&quot;{!filterid}&quot; size=&quot;1&quot;&gt;
+    
+        &lt;apex:selectOptions value=&quot;{!listviewoptions}&quot;&gt;
+        
+        &lt;/apex:selectOptions&gt;
+        
+        
+       
+    &lt;/apex:selectList&gt;
+    
+    &lt;apex:commandButton value=&quot;Filter&quot; /&gt; &lt;!-- action=&quot;{!list}&quot;  --&gt;
 
-&quot;Create Contact&quot;:{
-	&quot;prefix&quot;:&quot;CreateContact&quot;,
-	&quot;body&quot;: [
-		&quot;Contact ${1:singleContact} = New Contact();&quot;,
-		&quot;${1:singleContact}.firstName=${2:firstVar};&quot;,
-		&quot;${1:singleContact}.lastName=${3:LastVar};&quot;,
-		&quot;${1:singleContact}.AccountId=${4:retAccountId};&quot;,
-		&quot;${1:singleContact}.Email=${5:Email};&quot;,
-		&quot;${1:singleContact}.Phone=${6:Phone};&quot;,
-		&quot;${1:singleContact}.Title=${7:Title};&quot;,
-
-
-	],
-	&quot;description&quot;: &quot;CreateAccount with mandatory field + Additional fields&quot;
-},
-
-
-&quot;Create Opportunity&quot;:{
-	&quot;prefix&quot;:&quot;CreateOpportunity&quot;,
-	&quot;body&quot;: [
-		&quot;Opportunity ${1:singleOpportunity} = New Opportunity();&quot;,
-		&quot;${1:singleOpportunity}.Name=${2:nameVar};&quot;,
-		&quot;${1:singleOpportunity}.StageName=${3|&#x27;Prospecting&#x27;,&#x27;Qualification&#x27;,&#x27;Needs Analysis&#x27;,&#x27;Id. Decision Makers&#x27;,&#x27;Perception Analysis&#x27;,&#x27;Proposal/Price Quote&#x27;,&#x27;Negotiation/Review&#x27;,&#x27;Closed Won&#x27;,&#x27;Closed Lost&#x27;,&#x27;Other&#x27;|};&quot;,
-		&quot;${1:singleOpportunity}.AccountId=${4:retAccountId};&quot;,
-		&quot;${1:singleOpportunity}.CloseDate=DATE.TODAY()+${5:15};&quot;,
-		&quot;${1:singleOpportunity}.Amount=${6:Amount};&quot;,
-		
+ 
 
 
-	],
-	&quot;description&quot;: &quot;Create Opportunity with mandatory field + Additional fields&quot;
-},
+       
+         &lt;apex:pageblock &gt;
+         &lt;apex:pageblockButtons &gt;
+         &lt;apex:commandButton value=&quot;First&quot; action=&quot;{!first}&quot; /&gt;
+             &lt;apex:commandButton value=&quot;Previous&quot; action=&quot;{!previous}&quot;/&gt;
+              &lt;apex:commandButton value=&quot;Next&quot; action=&quot;{!next}&quot;/&gt;
+              &lt;apex:commandButton value=&quot;Last&quot; action=&quot;{!last}&quot;/&gt;
+              
+         &lt;/apex:pageblockButtons&gt;
+                &lt;apex:pageblockTable value=&quot;{!multiAcc}&quot; var=&quot;loopAcc&quot;&gt;
+                
+                    &lt;apex:column value=&quot;{!loopAcc.Name}&quot;/&gt;
+                    &lt;apex:column value=&quot;{!loopAcc.Phone}&quot;/&gt;
+                    &lt;apex:column value=&quot;{!loopAcc.WebSite}&quot;/&gt;
+                    &lt;apex:column value=&quot;{!loopAcc.AnnualRevenue}&quot;/&gt;
+                
+                
+                
+                &lt;/apex:pageblockTable&gt;
+            
+            
+            &lt;/apex:pageblock&gt;
+        
+        
 
 
+ 
+   &lt;/apex:form&gt;
+ 
+&lt;/apex:page&gt;</code></pre><p id="07c68abe-1f15-4fcc-bf65-cafc72df2d00" class="">
+</p><p id="85eca235-36d6-4a26-b88d-98c70727fb31" class="">
+</p><p id="1a250699-bcc9-427e-b8f7-735dab59ca9b" class="">
+</p><figure id="e6fe493e-7ca2-4d42-a26f-a2fcb7fbbec6" class="image"><a href="Standard%20List%20Controller%2083f3bc3910c6403187a8cc7a4ce32060/Untitled%201.png"><img style="width:1746px" src="Standard%20List%20Controller%2083f3bc3910c6403187a8cc7a4ce32060/Untitled%201.png"/></a></figure><p id="2585b3e3-7907-4b5e-865c-925bf93dde02" class="">
+</p><p id="cf397daf-4434-4614-ba53-9980e26f51bb" class="">
+</p><p id="019a4101-11b0-4834-a457-a8b900393e33" class="">
+</p><p id="ec624e46-d252-452c-9553-387984287eba" class="">
+</p><p id="7405c616-d459-4ace-bf51-6c0fb1997cfe" class="">
+</p><p id="a8765c78-a680-495c-9c94-d6ece91faee6" class="">
+</p><pre id="0142c043-ce27-438b-ab23-e2f29411008b" class="code"><code>&lt;apex:page standardController=&quot;Account&quot; recordSetVar=&quot;multiAcc&quot;&gt;
 
-&quot;Create Lead&quot;:{
-	&quot;prefix&quot;:&quot;CreateLead&quot;,
-	&quot;body&quot;: [
-		&quot;Lead ${1:singleLead} = New Lead();&quot;,
-		&quot;${1:singleLead}.Company=${2:CompanyVar};&quot;,
-		&quot;${1:singleLead}.Status=${3|&#x27;Contacted&#x27;,&#x27;Open&#x27;,&#x27;Qualified&#x27;,&#x27;Unqualified&#x27;,&#x27;Open - Not Contacted&#x27;,&#x27;Working - Contacted&#x27;,&#x27;Closed - Converted&#x27;,&#x27;Closed - Not Converted&#x27;,&#x27;Other&#x27;|};&quot;,
-		&quot;${1:singleLead}.firstName=${4:firstName};&quot;,
-		&quot;${1:singleLead}.lastName=${5:lastName};&quot;,
-		&quot;${1:singleLead}.Amount=${6:Amount};&quot;,
-		
+&lt;apex:form &gt;
+    
+    &lt;apex:selectList value=&quot;{!filterid}&quot; size=&quot;1&quot;&gt;
+    
+        &lt;apex:selectOptions value=&quot;{!listviewoptions}&quot;&gt;
+        
+        &lt;/apex:selectOptions&gt;
+        
+        
+       
+    &lt;/apex:selectList&gt;
+    
+    &lt;apex:commandButton value=&quot;Filter&quot; /&gt; &lt;!-- action=&quot;{!list}&quot;  --&gt;
 
-
-	],
-	&quot;description&quot;: &quot;Create Lead with mandatory field + Additional fields&quot;
-},
-
-
-
-&quot;Create Case&quot;:{
-	&quot;prefix&quot;:&quot;CreateCase&quot;,
-	&quot;body&quot;: [
-		&quot;Case ${1:singleCase} = New Case();&quot;,
-		&quot;${1:singleCase}.Status=${2|&#x27;New&#x27;,&#x27;Working&#x27;,&#x27;Escalated&#x27;,&#x27;Closed&#x27;|};&quot;,
-		&quot;${1:singleCase}.Priority=${3|&#x27;High&#x27;,&#x27;Medium&#x27;,&#x27;Low&#x27;|};&quot;,
-		&quot;${1:singleCase}.Origin=${4|&#x27;Phone&#x27;,&#x27;Email&#x27;,&#x27;Web&#x27;|};&quot;,
-		&quot;${1:singleCase}.ContactId=${5:retContactId};&quot;,
-		&quot;${1:singleCase}.AccountId=${6:retAccountId};&quot;,
-		&quot;${1:singleCase}.Subject=&#x27;${7:Subject}&#x27;;&quot;,
-		&quot;${1:singleCase}.Description=&#x27;${8:Description}&#x27;;&quot;,
-		
-	
+ 
 
 
-	],
-	&quot;description&quot;: &quot;Create Case with mandatory field + Additional fields&quot;
-},
+       
+         &lt;apex:pageblock &gt;
+                 &lt;apex:pageblockButtons &gt;
+                 &lt;apex:commandButton value=&quot;First&quot; action=&quot;{!first}&quot; /&gt;
+                     &lt;apex:commandButton value=&quot;Previous&quot; action=&quot;{!previous}&quot;/&gt;
+                      &lt;apex:commandButton value=&quot;Next&quot; action=&quot;{!next}&quot;/&gt;
+                      &lt;apex:commandButton value=&quot;Last&quot; action=&quot;{!last}&quot;/&gt;
+                      &lt;apex:commandButton value=&quot;Cancel&quot; action=&quot;{!cancel}&quot;/&gt;
+                      &lt;apex:commandButton value=&quot;Save&quot; action=&quot;{!save}&quot;/&gt;
+                      
+                 &lt;/apex:pageblockButtons&gt;
+                 
+                 
+                    &lt;apex:dataList value=&quot;{!multiAcc}&quot; var=&quot;loopAcc&quot; type=&quot;1&quot;&gt;
+                    
+                            &lt;apex:pageBlockSection columns=&quot;4&quot;&gt;
+                                &lt;apex:inputField value=&quot;{!loopAcc.Name}&quot; /&gt;
+                                &lt;apex:inputField value=&quot;{!loopAcc.Phone}&quot;/&gt;
+                                &lt;apex:inputField value=&quot;{!loopAcc.WebSite}&quot;/&gt;
+                                &lt;apex:inputField value=&quot;{!loopAcc.AnnualRevenue}&quot;/&gt;
+                            
+                            
+                            &lt;/apex:pageBlockSection&gt;
+                            
+                    &lt;/apex:dataList&gt;
+                    
+                    
+            &lt;/apex:pageblock&gt;
+        
+        
 
 
-
-
-
-
-
-}</code></pre></div><p id="e396f2c1-42cc-4f55-badb-cb22ddfc0340" class="">
-</p></div></article></body></html>
+ 
+   &lt;/apex:form&gt;
+ 
+&lt;/apex:page&gt;</code></pre><p id="17a33f83-f8cf-48fd-a4c9-0fc602fd8a71" class="">
+</p><p id="f343c5a5-e175-452c-9a09-1ced846c1ce4" class="">
+</p><p id="5668d867-66b7-4fc9-9dce-d651e5d93e83" class="">
+</p><figure id="13e7d9b4-ac59-497a-a930-259ff6be167a" class="image"><a href="Standard%20List%20Controller%2083f3bc3910c6403187a8cc7a4ce32060/Untitled%202.png"><img style="width:1843px" src="Standard%20List%20Controller%2083f3bc3910c6403187a8cc7a4ce32060/Untitled%202.png"/></a></figure></div></article></body></html>
