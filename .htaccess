@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule ^(seo-packages)/?$ $1.htm [L,NC]
